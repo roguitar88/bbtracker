@@ -6,6 +6,8 @@ import auth from '../../auth';
 
 import history from '../../utils/history';
 
+var baseUrl = window.location.origin;
+
 function Signout() {
     // let navigate = useNavigate();
     let userId = localStorage.getItem('userId');

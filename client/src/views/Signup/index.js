@@ -17,6 +17,8 @@ import auth from '../../auth';
 
 import history from '../../utils/history';
 
+var baseUrl = window.location.origin;
+
 function Signup() {
   // let [loginStatus, setLoginStatus] = useState(false);
   let [loading, setLoading] = useState('none');
@@ -34,7 +36,7 @@ function Signup() {
   Axios.defaults.withCredentials = true;
   const handleClickRegister = (values) => {
     setLoading('block');
-    Axios.post("http://bbtracker.test:3001/user/new", {
+    Axios.post(baseUrl + "3001/user/new", {
       name: values.name,
       email: values.email,
       password: values.password

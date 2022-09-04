@@ -21,6 +21,8 @@ import history from '../../utils/history';
 // import { useState, CSSProperties } from "react";
 // import ClipLoader from "react-spinners/ClipLoader";
 
+var baseUrl = window.location.origin;
+
 /*
 const override: CSSProperties = {
   display: "block",
@@ -55,7 +57,7 @@ function Signin() {
 
   /*
   const handleClickRegister = (values) => {
-    Axios.post("https://bbtracker.test:3001/user/new", {
+    Axios.post(baseUrl + ":3001/user/new", {
       name: values.name,
       email: values.email,
       password: values.password
@@ -105,7 +107,7 @@ function Signin() {
     // document.querySelector('.loading').style.display = 'block';
     setLoading('block');
     // console.log(values);
-    Axios.post("http://bbtracker.test:3001/user/login", {
+    Axios.post(baseUrl + ":3001/user/login", {
       email: values.email, // values.email
       password: values.password // values.password
     }).then((response) => {

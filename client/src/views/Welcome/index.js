@@ -4,6 +4,8 @@ import Axios from 'axios';
 // import { useNavigate } from "react-router-dom";
 // import auth from '../../auth';
 
+var baseUrl = window.location.origin;
+
 function Welcome() {
   const [name, setName] = useState("");
   // let navigate = useNavigate();
