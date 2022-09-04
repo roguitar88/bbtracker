@@ -12,12 +12,12 @@ const hp = require('./helper');
 // const bodyParser = require('body-parser');
 // const cookieParser = require('cookie-parser');
 // const session = require('express-session');
-var baseUrl = window.location.origin;
+// var baseUrl = window.location.origin;
 
 app.use(express.json());
 app.use(cors({
-    // origin: ['http://localhost:3000', 'http://bbtracker.test', 'https://bbtracker.tk'],
-    origin: [baseUrl],
+    origin: ['http://localhost:3000', 'http://bbtracker.test', 'https://bbtracker.tk'],
+    // origin: [baseUrl],
     methods: ['GET', 'POST'],
     credentials: true
 }));
