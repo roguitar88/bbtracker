@@ -12,6 +12,7 @@ const hp = require('./helper');
 // const bodyParser = require('body-parser');
 // const cookieParser = require('cookie-parser');
 // const session = require('express-session');
+var baseUrl = window.location.origin;
 
 app.use(express.json());
 app.use(cors({
