@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Copiando dados para a tabela bbtracker.users: ~1 rows (aproximadamente)
+-- Copiando dados para a tabela bbtracker.users: ~4 rows (aproximadamente)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `createdAt`, `updatedAt`) VALUES
 	(1, 'Rogério Soares', 'rogeriobsoares5@gmail.com', '$2b$10$ZKwZDo4g.DpEPQA6SUtApeI49sdT6OTppKUl7ohZLo1u56aI4FGGS', '2022-09-02 08:51:55', NULL),
