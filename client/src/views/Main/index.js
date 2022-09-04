@@ -1,6 +1,6 @@
 import '../../style.css';
 
-var baseUrl = window.location.origin;
+// var baseUrl = window.location.origin;
 
 function Main() {
   // let [loginStatus, setLoginStatus] = useState(false);
