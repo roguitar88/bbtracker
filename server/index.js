@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const bcrypt = require('bcrypt-nodejs');
-const saltRounds = 10;
+// const bcrypt = require('bcrypt-nodejs');
+// const saltRounds = 10;
 // const router = express.Router();
 // const db  = require('./models/db');
 const User = require('./models/User');
@@ -40,9 +40,11 @@ app.use(session({
 // a variable to save a session
 // var session;
 
+/*
 app.get('/', (req, res) => {
     res.send('Testing backend!');
 });
+*/
 
 /*
 app.get('/', (req, res) => {
@@ -91,30 +93,33 @@ app.post('/user/new', (req, res) => {
         }
 
         if (alright) {
-            bcrypt.hash(password, saltRounds, (err, hash) => {
-                if (err) {
-                    console.log(err);
-                    res.send({success: false, msg: err});
-                }
+            // bcrypt.hash(password, saltRounds, (err, hash) => {
+                // if (err) {
+                    // console.log(err);
+                    // res.send({success: false, msg: err});
+                // } else {
+                    User.create({
+                        name: name,
+                        email: email,
+                        password: password //hash
+                    }).then((user) => {
+                        /*
+                        req.session.userId = data[0].id;
+                        console.log(req.session.userId);
+                        */
 
-                User.create({
-                    name: name,
-                    email: email,
-                    password: hash
-                }).then((user) => {
-                    /*
-                    req.session.userId = data[0].id;
-                    console.log(req.session.userId);
-                    */
-
-                    console.log('User registered successfully');
-                    res.send({success: true, msg: 'User registered successfully', userId: user.dataValues.id});
-                    // res.redirect('/welcome');
-                }).catch((err) => {
-                    console.log(err);
-                    res.send({success: false, msg: err});
-                });    
-            });
+                        console.log('User registered successfully');
+                        res.send({success: true, msg: 'User registered successfully', userId: user.dataValues.id});
+                        // res.redirect('/welcome');
+                    }).catch((err) => {
+                        console.log(err);
+                        res.send({success: false, msg: err});
+                    });  
+                // }  
+            // }).catch((err) => {
+                // console.log(err);
+                // res.send({success: false, msg: err});
+            // });
         }
     })
     /*
@@ -156,8 +161,9 @@ app.post('/user/login', (req, res) => {
             console.log('Email not found');
             res.send({success: false, msg: 'Email not found'});
         } else {
-            bcrypt.compare(password, data[0].password, (error, result) => {
-                if (!result) {
+            // bcrypt.compare(password, data[0].password, (error, result) => {
+                // if (!result) {
+                if (password !== data[0].password) {
                     console.log('Password incorrect');
                     res.send({success: false, msg: 'Password incorrect'});
                 } else {
@@ -165,7 +171,7 @@ app.post('/user/login', (req, res) => {
                     res.send({success: true, msg: 'User logged in successfully!', userId: data[0].id});
                     // res.redirect('/welcome');
                 }
-            });
+            // });
         }
     });
 });

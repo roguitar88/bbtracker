@@ -83,6 +83,11 @@ function Signin() {
   // console.log(Spinner(true));
   // Child();
 
+  if (localStorage.getItem('userId') !== null) {
+    history.push('/welcome');
+    history.go();
+  }
+
   // let Spinner2 = Spinner(false);
   // document.querySelector('.sweet-loading').style.visibility = 'hidden';
   // let [loading, setLoading] = useState(false);
@@ -170,7 +175,7 @@ function Signin() {
           <div className="wrap-login">
             <Formik initialValues={{email: '', password: ''}} onSubmit={handleClickLogin} validationSchema={validationLogin}>
               <Form className="login-form">
-                <span className="login-form-title">BBTracker</span>
+                <span className="login-form-title"><a href="/">BBTracker</a></span>
 
                 <span className="login-form-title">
                   <img src={basketballIcon} alt="BBTracker" />

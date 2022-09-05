@@ -20,6 +20,11 @@ import history from '../../utils/history';
 var baseUrl = window.location.origin;
 
 function Signup() {
+  if (localStorage.getItem('userId') !== null) {
+    history.push('/welcome');
+    history.go();
+  }
+
   // let [loginStatus, setLoginStatus] = useState(false);
   let [loading, setLoading] = useState('none');
   let [nameValMsg, setNameValMsg] = useState("");
@@ -36,7 +41,7 @@ function Signup() {
   Axios.defaults.withCredentials = true;
   const handleClickRegister = (values) => {
     setLoading('block');
-    Axios.post(baseUrl + "3001/user/new", {
+    Axios.post(baseUrl + ":3001/user/new", {
       name: values.name,
       email: values.email,
       password: values.password
@@ -90,7 +95,7 @@ function Signup() {
           <div className="wrap-login">
             <Formik initialValues={{name: '', email: '', password: ''}} onSubmit={handleClickRegister} validationSchema={validationRegister}>
               <Form className="login-form">
-                <span className="login-form-title">BBTracker</span>
+                <span className="login-form-title"><a href="/">BBTracker</a></span>
 
                 <span className="login-form-title">
                   <img src={basketballIcon} alt="BBTracker" />

@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 
 // DB connection (MySQL)
-const sequelize = new Sequelize('bbtracker', 'root', '', {
+const sequelize = new Sequelize('bbtracker', 'root', 'gQB36gRAgVcY4aYw@', {
     host: 'localhost',
     dialect: 'mysql'
     // query: {raw: true}
