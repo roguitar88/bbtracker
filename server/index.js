@@ -40,11 +40,9 @@ app.use(session({
 // a variable to save a session
 // var session;
 
-/*
-app.get('/max', (req, res) => {
-    res.send('This is max!');
+app.get('/', (req, res) => {
+    res.send('Testing backend!');
 });
-*/
 
 /*
 app.get('/', (req, res) => {

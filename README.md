@@ -10,7 +10,6 @@ This application has been made thanks to the following technologies:
 * OCI (Oracle Cloud Infrastructure): VM with 4GB RAM and 1 CPU core, Ubuntu 20.04 LTS
 * MySQL (version 8.0.30)
 
-
 What we have until now is only the login and registration module, so many other modules are lacking and need to be made and continued. If you wanna go on with this project, don't hesitate to contact me.
 
 ## 
@@ -18,6 +17,10 @@ What we have until now is only the login and registration module, so many other 
 ## Requirements
 
 As requirements to run the project, all you need to have installed in your machine/server is NodeJS, MySQL and Nginx (via Laragon in Windows OS)
+
+## Database
+
+The database is in **/server** directory. Import that database to your MySQL environment.
 
 ## Instructions
 
