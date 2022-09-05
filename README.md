@@ -21,6 +21,7 @@ As requirements to run the project, all you need to have installed in your machi
 ## Database
 
 The database is in **/server** directory. Import that database to your MySQL environment.
+*Note:* The database connection credentials you can find in /server/models/db.js. Alter it, if it's the case.
 
 ## Instructions
 
