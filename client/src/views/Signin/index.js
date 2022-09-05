@@ -71,10 +71,10 @@ function Signin() {
   /*
   function Child(value) {
     return (
-      <div class="loading" style={{ display: value }}>
-        <div class="await"></div>
-          <div class="animated-ellipsis">
-            <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+      <div className="loading" style={{ display: value }}>
+        <div className="await"></div>
+          <div className="animated-ellipsis">
+            <div className="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
           </div>
       </div>
     );

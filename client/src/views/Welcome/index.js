@@ -27,44 +27,44 @@ function Welcome() {
     <div id="welcome">
       <h1>Hi, <span id="name">{name}</span></h1>
       <h3>Welcome to BBTracker</h3>
-      <div class="cards">
-        <div class="card">
+      <div className="cards">
+        <div className="card">
           <h3>Crossover</h3>
           <h1>40</h1>
         </div>
 
-        <div class="card">
+        <div className="card">
           <h3>Between the legs</h3>
           <h1>22</h1>
         </div>
 
-        <div class="card">
+        <div className="card">
           <h3>Wraparound</h3>
           <h1>65</h1>
         </div>
 
-        <div class="card">
+        <div className="card">
           <h3>V dribble</h3>
           <h1>15</h1>
         </div>
 
-        <div class="card">
+        <div className="card">
           <h3>Power ups</h3>
           <h1>45</h1>
         </div>
 
-        <div class="card">
+        <div className="card">
           <h3>Over the head</h3>
           <h1>30</h1>
         </div>
 
-        <div class="card">
+        <div className="card">
           <h3>Jab steps</h3>
           <h1>19</h1>
         </div>
       </div>
 
-      <div class="info">
+      <div className="info">
         <img src={basketballWoman} alt="Basketball Woman" />
         <span>You're still at<br /><em>Beginner</em> level</span>
       </div>
