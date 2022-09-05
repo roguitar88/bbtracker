@@ -13,9 +13,9 @@ function AppRoutes() {
     return(
         <Router>
             <Routes>
-                <Route path="/" element={<Main />}></Route>
-                <Route path="/signup" element={<Signup />}></Route>
-                <Route path="/signin" element={<Signin />}></Route>
+                <Route path="/" element={localStorage.getItem('userId') === null ? <Main /> : <Navigate replace to="/welcome" />}></Route>
+                <Route path="/signup" element={localStorage.getItem('userId') === null ? <Signup /> : <Navigate replace to="/welcome" />}></Route>
+                <Route path="/signin" element={localStorage.getItem('userId') === null ? <Signin /> : <Navigate replace to="/welcome" />}></Route>
                 <Route path="/welcome" element={!auth.isAuthenticated() ? <Navigate replace to="/signin" /> : <Welcome />}></Route>
                 <Route path="/signout" element={<Signout />}></Route>
             </Routes>

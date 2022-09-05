@@ -8,7 +8,7 @@ import googleplay from '../../assets/img/googleplay.png';
 
 import appstore from '../../assets/img/appstore.png';
 
-import history from '../../utils/history';
+// import history from '../../utils/history';
 
 function Main() {
   // let [loginStatus, setLoginStatus] = useState(false);
@@ -26,10 +26,13 @@ function Main() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   */
+
+  /*
   if (localStorage.getItem('userId') !== null) {
     history.push('/welcome');
     history.go();
   }
+  */
 
   return(
     <div id="main" style={{ background: `url(${animated}), linear-gradient(50deg,#735244,#382920)`, backgroundSize: 'cover', height: '100vh', backgroundAttachment: 'fixed' }}>

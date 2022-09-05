@@ -66,7 +66,7 @@ function Welcome() {
 
       <div className="info">
         <img src={basketballWoman} alt="Basketball Woman" />
-        <span>You're still at<br /><em>Beginner</em> level</span>
+        {/* <span>You're still at<br /><em>Beginner</em> level</span> */}
       </div>
       {/* <a href="/signout"><button>Sign out</button></a> */}
     </div>
