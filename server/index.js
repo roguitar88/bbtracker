@@ -16,7 +16,7 @@ const hp = require('./helper');
 
 app.use(express.json());
 app.use(cors({
-    origin: ['http://localhost:3000', 'http://bbtracker.test', 'https://bbtracker.tk'],
+    origin: ['http://localhost:3000', 'http://bbtracker.test', 'https://bbtracker.tk:3000', 'https://bbtracker.tk'],
     // origin: [baseUrl],
     methods: ['GET', 'POST'],
     credentials: true
