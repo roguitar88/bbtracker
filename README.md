@@ -1,11 +1,11 @@
 # bbtracker
 BBTracker
 
-BBTracker is an application basically made with React and Nodejs whose main goal is to serve novice and wannabe Basketball Players around the world. It replaces the old method of taking notes on a notebook, which saves time both of players and coaches. Moreover, it's for study purposes and a practical example of how a login/registration must be done using the latest technology.
+BBTracker is an application basically made with React and Node.js whose main goal is to serve novice and wannabe Basketball Players around the world. It replaces the old method of taking notes on a notebook, which saves time both of players and coaches. Moreover, it's for study purposes and a practical example of how a login/registration must be done using the latest technology.
 
 This application has been made thanks to the following technologies:
 * ReactJS (version 18.2.0), Yarn (version 1.22.19)
-* NodeJS (version 12.22.12)
+* Node.js (version 12.22.12)
 * Nginx (Web server, version 1.18.0)
 * OCI (Oracle Cloud Infrastructure): VM with 4GB RAM and 1 CPU core, Ubuntu 20.04 LTS
 * MySQL (version 8.0.30)
@@ -16,7 +16,7 @@ What we have until now is only the login and registration module, so many other 
 
 ## Requirements
 
-As requirements to run the project, all you need to have installed in your machine/server is NodeJS, MySQL and Nginx (via Laragon in Windows OS)
+As requirements to run the project, all you need to have installed in your machine/server is Node.js, MySQL and Nginx (via Laragon in Windows OS)
 
 ## Database
 
@@ -50,3 +50,53 @@ node index.js
 ```
 
 And... That's it!
+
+## Running project in production
+
+*Note:* Before the web server config below, install the SSL certificate by using ```sudo certbot --nginx```. If you don't have Certbot installed in your server, just refer to: ***[https://certbot.eff.org/instructions](https://certbot.eff.org/instructions)***.
+
+### Nginx config
+server {
+    listen 80 default_server;
+    listen [::]:80 default_server; #ipv6
+
+    server_name bbtracker.tk www.bbtracker.tk;
+
+    # Redirect all insecure http:// requests to https://
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl http2 default_server;
+    listen [::]:443 ssl http2 default_server;
+    server_name bbtracker.tk www.bbtracker.tk;
+
+    root /var/www/html/bbtracker/client/build;
+    index index.html index.htm;
+    try_files $uri /index.html;
+
+    ssl_protocols TLSv1.2;
+
+    # Fix 'The Logjam Attack'.
+    ssl_ciphers EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH;
+    ssl_prefer_server_ciphers on;
+    ssl_dhparam /etc/ssl/dh2048_param.pem;
+
+    location / {
+        try_files $uri $uri/ = 404;
+    }
+
+    charset utf-8;
+
+    location ~ /\.ht {
+        deny all;
+    }
+
+    ssl_certificate /etc/letsencrypt/live/bbtracker.tk/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/bbtracker.tk/privkey.pem; # managed by Certbot
+}
+
+### Build
+Run ```npm run build``` and...
+
+That's it!
