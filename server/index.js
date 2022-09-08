@@ -1,3 +1,6 @@
+const fs = require('fs');
+const http = require('http');
+const https = require('https');
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -9,6 +12,10 @@ const User = require('./models/User');
 // const { QueryTypes } = require('sequelize');
 const hp = require('./helper');
 
+const privateKey  = fs.readFileSync('/etc/letsencrypt/live/bbtracker.tk/fullchain.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/bbtracker.tk/privkey.pem', 'utf8');
+
+const credentials = {key: privateKey, cert: certificate};
 // const bodyParser = require('body-parser');
 // const cookieParser = require('cookie-parser');
 // const session = require('express-session');
@@ -183,6 +190,20 @@ app.get('/logout',(req, res) => {
 });
 */
 
-app.listen(3001, function () {
+// https://stackoverflow.com/questions/11744975/enabling-https-on-express-js
+
+/*
+app.listen(3001, () => {
     console.log('Server is running!');
+});
+*/
+
+/*
+http.createServer(app).listen( 3001, () => {
+    console.log('Server is running on http!');
+});
+*/
+
+https.createServer(credentials, app).listen( 3001, () => {
+    console.log('Server is running on https!');
 });
