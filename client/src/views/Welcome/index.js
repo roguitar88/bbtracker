@@ -14,7 +14,7 @@ function Welcome() {
 
   Axios.defaults.withCredentials = true;
   useEffect(() => {
-    Axios.post('http://localhost:3001/user/data', {
+    Axios.post(baseUrl + ':3001/user/data', {
       id: localStorage.getItem('userId')
     }).then((response) => {
       // console.log(response);
