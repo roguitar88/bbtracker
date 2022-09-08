@@ -4,9 +4,9 @@ import Axios from 'axios';
 // import { useNavigate } from "react-router-dom";
 // import auth from '../../auth';
 // import Basketboy from '../../assets/img/basketboy.jpg';
+import basketballWoman from '../../assets/img/basketball-woman-transparent.png';
 
 var baseUrl = window.location.origin;
-import basketballWoman from '../../assets/img/basketball-woman-transparent.png';
 
 function Welcome() {
   const [name, setName] = useState("");
