@@ -109,6 +109,6 @@ sudo node index.js
 ```
 
 ### Build
-Run ```npm run build``` and...
+Run ```npm run build```, restart Nginx and...
 
 That's it!
