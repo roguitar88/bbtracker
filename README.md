@@ -56,6 +56,7 @@ And... That's it!
 *Note:* Before the web server config below, install the SSL certificate by using ```sudo certbot --nginx```. If you don't have Certbot installed in your server, just refer to: ***[https://certbot.eff.org/instructions](https://certbot.eff.org/instructions)***.
 
 ### Nginx config
+```
 server {
     listen 80 default_server;
     listen [::]:80 default_server; #ipv6
@@ -95,6 +96,7 @@ server {
     ssl_certificate /etc/letsencrypt/live/bbtracker.tk/fullchain.pem; # managed by Certbot
     ssl_certificate_key /etc/letsencrypt/live/bbtracker.tk/privkey.pem; # managed by Certbot
 }
+```
 
 ### Build
 Run ```npm run build``` and...
