@@ -98,6 +98,16 @@ server {
 }
 ```
 
+In client directory run:
+```
+sudo yarn start
+```
+
+In server directory run:
+```
+sudo node index.js
+```
+
 ### Build
 Run ```npm run build``` and...
 
