@@ -10,7 +10,7 @@ import history from '../../utils/history';
 
 function Signout() {
     // let navigate = useNavigate();
-    // let userId = localStorage.getItem('userId');
+    let userId = localStorage.getItem('userId');
 
     // userId !== null
     if (auth.isAuthenticated()) auth.logout(userId);
