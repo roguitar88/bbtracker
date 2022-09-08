@@ -17,7 +17,7 @@ function Main() {
   /*
   Axios.defaults.withCredentials = true;
   useEffect(() => {
-    Axios.get('http://localhost:3001/user/login').then((response) => {
+    Axios.get(baseUrl + ':3001/user/login').then((response) => {
       // console.log(response);
       // setLoginStatus(response.data.loggedIn);
       // if (loginStatus) navigate('/welcome');
