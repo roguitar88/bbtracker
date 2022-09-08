@@ -1,10 +1,11 @@
 import React from 'react';
 // import Player from './assets/img/basketball-player.png';
+import auth from '.auth';
 import Logo from './assets/img/logo.png';
 // import Cover from './assets/img/baskteball-cover.jpg'
 
 let navBtns;
-if (localStorage.getItem('userId') === null) {
+if (!auth.Authenticated()) {
   navBtns = 
   <ul>
     <li><a href="/signup"><button>Sign Up</button></a></li>

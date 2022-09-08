@@ -1,6 +1,6 @@
 // import React from 'react';
-import Routes from './routes';
 import Headers from './Headers';
+import Routes from './routes';
 // import Article from './Article';
 import Footer from './Footer';
 
