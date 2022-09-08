@@ -83,13 +83,6 @@ function Signin() {
   // console.log(Spinner(true));
   // Child();
 
-  /*
-  if (localStorage.getItem('userId') !== null) {
-    history.push('/welcome');
-    history.go();
-  }
-  */
-
   // let Spinner2 = Spinner(false);
   // document.querySelector('.sweet-loading').style.visibility = 'hidden';
   // let [loading, setLoading] = useState(false);

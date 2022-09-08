@@ -20,11 +20,6 @@ import history from '../../utils/history';
 var baseUrl = window.location.origin;
 
 function Signup() {
-  if (localStorage.getItem('userId') !== null) {
-    history.push('/welcome');
-    history.go();
-  }
-
   // let [loginStatus, setLoginStatus] = useState(false);
   let [loading, setLoading] = useState('none');
   let [nameValMsg, setNameValMsg] = useState("");

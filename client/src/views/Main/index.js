@@ -27,13 +27,6 @@ function Main() {
   }, []);
   */
 
-  /*
-  if (localStorage.getItem('userId') !== null) {
-    history.push('/welcome');
-    history.go();
-  }
-  */
-
   return(
     <div id="main" style={{ background: `url(${animated}), linear-gradient(50deg,#735244,#382920)`, backgroundSize: 'cover', height: '100vh', backgroundAttachment: 'fixed' }}>
       {/* background: url(../../assets/img/basketball-cover.jpg);
