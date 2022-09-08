@@ -12,11 +12,11 @@ const User = require('./models/User');
 // const { QueryTypes } = require('sequelize');
 const hp = require('./helper');
 
-const privateKey  = fs.readFileSync('/etc/letsencrypt/live/bbtracker.tk/fullchain.pem');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/bbtracker.tk/privkey.pem');
-// const ca = fs.readFileSync('/etc/letsencrypt/live/bbtracker.tk/', 'utf8');
+const privateKey  = fs.readFileSync('/etc/letsencrypt/live/bbtracker.tk/fullchain.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/bbtracker.tk/privkey.pem', 'utf8');
+const ca = fs.readFileSync('/etc/letsencrypt/live/bbtracker.tk/chain.pem', 'utf8');
 
-const credentials = {key: privateKey, cert: certificate};
+const credentials = {key: privateKey, cert: certificate, ca: ca};
 // const bodyParser = require('body-parser');
 // const cookieParser = require('cookie-parser');
 // const session = require('express-session');
