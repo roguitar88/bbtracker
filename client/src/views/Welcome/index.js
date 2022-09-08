@@ -5,7 +5,7 @@ import Axios from 'axios';
 // import auth from '../../auth';
 // import Basketboy from '../../assets/img/basketboy.jpg';
 
-// var baseUrl = window.location.origin;
+var baseUrl = window.location.origin;
 import basketballWoman from '../../assets/img/basketball-woman-transparent.png';
 
 function Welcome() {
