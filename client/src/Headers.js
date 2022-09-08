@@ -5,7 +5,7 @@ import Logo from './assets/img/logo.png';
 // import Cover from './assets/img/baskteball-cover.jpg'
 
 let navBtns;
-if (!auth.Authenticated()) {
+if (!auth.isAuthenticated()) {
   navBtns = 
   <ul>
     <li><a href="/signup"><button>Sign Up</button></a></li>
