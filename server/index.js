@@ -200,12 +200,13 @@ app.listen(3001, () => {
 });
 */
 
-/*
+
 http.createServer(app).listen( 3001, () => {
     console.log('Server is running on http!');
 });
-*/
 
+/*
 https.createServer(credentials, app).listen( 3001, () => {
     console.log('Server is running on https!');
 });
+*/
