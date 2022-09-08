@@ -112,3 +112,5 @@ sudo node index.js
 Run ```npm run build```, restart Nginx and...
 
 That's it!
+
+*Note:* React (client) will be running on port 3000, whilst Node (client) will be running on port 3001. So just make sure those ports are freed up in the firewall/network settings.
