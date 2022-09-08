@@ -12,8 +12,8 @@ const User = require('./models/User');
 // const { QueryTypes } = require('sequelize');
 const hp = require('./helper');
 
-const privateKey  = fs.readFileSync('/home/ubuntu/csr.pem');
-const certificate = fs.readFileSync('/home/ubuntu/server.crt');
+const privateKey  = fs.readFileSync('./csr.pem');
+const certificate = fs.readFileSync('./server.crt');
 // const ca = fs.readFileSync('/etc/letsencrypt/live/bbtracker.tk/chain.pem', 'utf8');
 
 // const credentials = {key: privateKey, cert: certificate, ca: ca};
