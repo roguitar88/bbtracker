@@ -21,9 +21,9 @@ As requirements to run the project, all you need to have installed in your machi
 ## Database
 
 The database is in **/server** directory. Import that database to your MySQL environment.
-*Note:* The database connection credentials you can find in /server/models/db_test.js and /server/models/db_prod.js. Alter it, if it's the case.
+*Note:* The database connection credentials you can find in /server/models/db.js. Alter it, if it's the case.
 
-## Instructions
+## Instructions (for localhost)
 
 Okay. If you noticed, the project is separated into two folders: the client and the server. Using a terminal, enter the **/client** and **/server** directories and run the command:
 
@@ -46,10 +46,36 @@ yarn start
 And finally don't forget to initialize the server-side part of the application:
 
 ```
-node test.js
+node index.js
 ```
 
 And... That's it!
+
+*Warning*: Don't forget to create the .env file and add ```NODE_ENV="development"```.
+If you're using Windows, try to use this project with Laragon and in Nginx, add a config file like this:
+
+```
+server {
+    listen 80;
+    server_name bbtracker.test *.bbtracker.test;
+    root "C:/laragon/www/bbtracker/client/build";
+    
+    index index.html index.htm;
+	try_files $uri /index.html;
+		
+    location / {
+		try_files $uri $uri/ = 404;
+	}
+	
+    charset utf-8;
+	
+    location ~ /\.ht {
+        deny all;
+    }
+}
+```
+
+Then run ```npm run build``` and restart Nginx.
 
 ## Running project in production
 
@@ -105,7 +131,7 @@ sudo yarn start
 
 In server directory run:
 ```
-sudo node prod.js
+sudo node index.js
 ```
 
 ### Build
@@ -114,3 +140,5 @@ Run ```npm run build```, restart Nginx and...
 That's it!
 
 *Note:* React (client) will be running on port 3000, whilst Node (client) will be running on port 3001. So just make sure those ports are freed up in the firewall/network settings.
+
+*Warning*: Don't forget to create the .env file and add ```NODE_ENV="production"```.
