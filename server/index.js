@@ -1,7 +1,7 @@
 // const express = require('express');
 // const app = express();
 const web = require('./web');
-const environment = process.env.NODE_ENV || 'development';
+// const environment = process.env.NODE_ENV || 'development';
 // const bcrypt = require('bcrypt-nodejs');
 // const saltRounds = 10;
 // const router = express.Router();
