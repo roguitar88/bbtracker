@@ -21,7 +21,7 @@ As requirements to run the project, all you need to have installed in your machi
 ## Database
 
 The database is in **/server** directory. Import that database to your MySQL environment.
-*Note:* The database connection credentials you can find in /server/models/db.js. Alter it, if it's the case.
+*Note:* The database connection credentials you can find in /server/models/db_test.js and /server/models/db_prod.js. Alter it, if it's the case.
 
 ## Instructions
 
@@ -46,7 +46,7 @@ yarn start
 And finally don't forget to initialize the server-side part of the application:
 
 ```
-node index.js
+node test.js
 ```
 
 And... That's it!
@@ -105,7 +105,7 @@ sudo yarn start
 
 In server directory run:
 ```
-sudo node index.js
+sudo node prod.js
 ```
 
 ### Build
