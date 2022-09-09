@@ -8,7 +8,7 @@ const cors = require('cors');
 // const saltRounds = 10;
 // const router = express.Router();
 // const db  = require('./models/db');
-const User = require('./models/User');
+const User = require('./models/User_prod');
 // const { QueryTypes } = require('sequelize');
 const hp = require('./helper');
 
