@@ -8,7 +8,8 @@ const cors = require('cors');
 // const saltRounds = 10;
 // const router = express.Router();
 // const db  = require('./models/db');
-const User = require('./models/User_prod');
+var User = require('./models/User');
+const User2 = User.User2;
 // const { QueryTypes } = require('sequelize');
 const hp = require('./helper');
 
@@ -57,7 +58,7 @@ app.get('/', (req, res) => {
 
 /*
 app.get('/', (req, res) => {
-    User.findAll({
+    User2.findAll({
         raw: true,
         where: {
             email: 'rogeriobsoares5@gmail.com'
@@ -81,7 +82,7 @@ app.post('/user/new', (req, res) => {
     let alright = true;
     // let errorType = new Array();
 
-    User.findAll({
+    User2.findAll({
         raw: true,
         where: {
             email: email
@@ -107,7 +108,7 @@ app.post('/user/new', (req, res) => {
                     // console.log(err);
                     // res.send({success: false, msg: err});
                 // } else {
-                    User.create({
+                    User2.create({
                         name: name,
                         email: email,
                         password: password //hash
@@ -141,7 +142,7 @@ app.post('/user/new', (req, res) => {
 app.post('/user/data', (req, res) => {
     const userId = req.body.id;
 
-    User.findAll({
+    User2.findAll({
         raw: true,
         where: {
             id: userId
@@ -159,7 +160,7 @@ app.post('/user/login', (req, res) => {
     const password = req.body.password;
     // let error = new Array();
 
-    User.findAll({
+    User2.findAll({
         raw: true,
         where: {
             email: email
