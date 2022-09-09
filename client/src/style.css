@@ -145,8 +145,8 @@ html, body {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    padding: 15px;
-    padding-top: 60px;
+    padding: 0 15px;
+    /* padding-top: 0; */
     background-color: #111;
 }
 

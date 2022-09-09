@@ -111,7 +111,7 @@ function Signin() {
       email: values.email, // values.email
       password: values.password // values.password
     }).then((response) => {
-      console.log(response);
+      // console.log(response);
       
       if (response.data.success) {
         // document.querySelector('.loading').style.display = 'none';

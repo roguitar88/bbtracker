@@ -1,4 +1,4 @@
-import '../../style.css';
+import style from '../../style.css';
 
 // var baseUrl = window.location.origin;
 
