@@ -1,11 +1,12 @@
 const Sequelize = require('sequelize');
 require('dotenv').config();
 // console.log(process.env);
-// global.env = 'development';
-global.environment = process.env.NODE_ENV || 'development';
+// global.appEnvironment = 'development'; // Enable this for localhost
+// global.appEnvironment = process.env.NODE_ENV || 'development';
+global.appEnvironment = process.env.NODE_ENV;
 
 // DB connection (MySQL)
-let pass = environment === 'production' ? 'gQB36gRAgVcY4aYw@' : '';
+let pass = appEnvironment === 'production' ? 'gQB36gRAgVcY4aYw@' : '';
 
 const sequelize = new Sequelize('bbtracker', 'root', pass, {
     host: 'localhost',

@@ -17,7 +17,7 @@ const web = require('./web');
 // Note: NODE_ENV=production sudo node app.js
 
 // https://stackoverflow.com/questions/11744975/enabling-https-on-express-js
-if (environment === 'production') {
+if (appEnvironment === 'production') {
     const fs = require('fs');
     const https = require('https');
 
