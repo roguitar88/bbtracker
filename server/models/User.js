@@ -1,5 +1,5 @@
-const db  = require('./db_test');
-const db2 = require('./db_prod');
+const db  = require('./db');
+// const db2 = require('./db_prod');
 
 // Localhost
 const User = db.sequelize.define('users', {
@@ -20,6 +20,7 @@ const User = db.sequelize.define('users', {
     }
 });
 
+/*
 // Production
 const User2 = db2.sequelize.define('users', {
     id: {
@@ -38,9 +39,7 @@ const User2 = db2.sequelize.define('users', {
         type: db2.Sequelize.STRING(100)
     }
 });
+*/
 
 // User.sync({force: true});
-module.exports = {
-    User: User,
-    User2: User2
-};
+module.exports = User;

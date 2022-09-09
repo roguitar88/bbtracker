@@ -1,7 +1,10 @@
 const Sequelize = require('sequelize');
+global.env = 'development';
 
 // DB connection (MySQL)
-const sequelize = new Sequelize('bbtracker', 'root', 'gQB36gRAgVcY4aYw@', {
+let pass = env === 'production' ? 'gQB36gRAgVcY4aYw@' : '';
+
+const sequelize = new Sequelize('bbtracker', 'root', pass, {
     host: 'localhost',
     dialect: 'mysql'
     // query: {raw: true}

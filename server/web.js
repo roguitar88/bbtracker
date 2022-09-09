@@ -1,28 +1,11 @@
-const fs = require('fs');
-const http = require('http');
-const https = require('https');
 const express = require('express');
 const app = express();
 const cors = require('cors');
-// const bcrypt = require('bcrypt-nodejs');
-// const saltRounds = 10;
-// const router = express.Router();
 // const db  = require('./models/db');
-var User = require('./models/User');
-const User2 = User.User2;
+const User = require('./models/User');
+// const User = UserTest.User;
 // const { QueryTypes } = require('sequelize');
 const hp = require('./helper');
-
-const privateKey  = fs.readFileSync('/etc/letsencrypt/live/bbtracker.tk/privkey.pem');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/bbtracker.tk/fullchain.pem');
-// const ca = fs.readFileSync('/etc/letsencrypt/live/bbtracker.tk/chain.pem', 'utf8');
-
-// const credentials = {key: privateKey, cert: certificate, ca: ca};
-const credentials = {key: privateKey, cert: certificate};
-// const bodyParser = require('body-parser');
-// const cookieParser = require('cookie-parser');
-// const session = require('express-session');
-// var baseUrl = window.location.origin;
 
 app.use(express.json());
 app.use(cors({
@@ -58,7 +41,7 @@ app.get('/', (req, res) => {
 
 /*
 app.get('/', (req, res) => {
-    User2.findAll({
+    User.findAll({
         raw: true,
         where: {
             email: 'rogeriobsoares5@gmail.com'
@@ -82,7 +65,7 @@ app.post('/user/new', (req, res) => {
     let alright = true;
     // let errorType = new Array();
 
-    User2.findAll({
+    User.findAll({
         raw: true,
         where: {
             email: email
@@ -108,7 +91,7 @@ app.post('/user/new', (req, res) => {
                     // console.log(err);
                     // res.send({success: false, msg: err});
                 // } else {
-                    User2.create({
+                    User.create({
                         name: name,
                         email: email,
                         password: password //hash
@@ -142,7 +125,7 @@ app.post('/user/new', (req, res) => {
 app.post('/user/data', (req, res) => {
     const userId = req.body.id;
 
-    User2.findAll({
+    User.findAll({
         raw: true,
         where: {
             id: userId
@@ -160,7 +143,7 @@ app.post('/user/login', (req, res) => {
     const password = req.body.password;
     // let error = new Array();
 
-    User2.findAll({
+    User.findAll({
         raw: true,
         where: {
             email: email
@@ -207,6 +190,4 @@ http.createServer(app).listen( 3001, () => {
 });
 */
 
-https.createServer(credentials, app).listen( 3001, () => {
-    console.log('Server is running on https!');
-});
+module.exports = app;
