@@ -1,6 +1,7 @@
 // const express = require('express');
 // const app = express();
 const web = require('./web');
+const environment = process.env.NODE_ENV || 'development';
 // const bcrypt = require('bcrypt-nodejs');
 // const saltRounds = 10;
 // const router = express.Router();
@@ -13,9 +14,10 @@ const web = require('./web');
 // const session = require('express-session');
 // var baseUrl = window.location.origin;
 
-// https://stackoverflow.com/questions/11744975/enabling-https-on-express-js
+// Note: NODE_ENV=production sudo node app.js
 
-if (env === 'production') {
+// https://stackoverflow.com/questions/11744975/enabling-https-on-express-js
+if (environment === 'production') {
     const fs = require('fs');
     const https = require('https');
 

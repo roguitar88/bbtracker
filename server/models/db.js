@@ -1,8 +1,9 @@
 const Sequelize = require('sequelize');
-global.env = 'production';
+// global.env = 'development';
+const environment = process.env.NODE_ENV || 'development';
 
 // DB connection (MySQL)
-let pass = env === 'production' ? 'gQB36gRAgVcY4aYw@' : '';
+let pass = environment === 'production' ? 'gQB36gRAgVcY4aYw@' : '';
 
 const sequelize = new Sequelize('bbtracker', 'root', pass, {
     host: 'localhost',
