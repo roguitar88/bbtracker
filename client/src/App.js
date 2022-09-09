@@ -1,15 +1,16 @@
 // import React from 'react';
-import Headers from './Headers';
+// import Headers from './Headers';
+// import Footer from './Footer';
 import Routes from './routes';
 // import Article from './Article';
-import Footer from './Footer';
+// import auth from './auth';
 
 function App() {
   return (
     <div>
-      <Headers />
+      {/* {!auth.isAuthenticated() ? <Headers /> : ''} */}
       <Routes />
-      <Footer />
+      {/* {!auth.isAuthenticated() ? <Footer /> : ''} */}
     </div>
   );
 }

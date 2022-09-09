@@ -26,9 +26,11 @@ html, body {
 }
 
 #header, #footer {
-    display: none;
+    /* display: none; */
+    display: block;
 }
 
+/*
 #header:has(+ #main), #header:has(+ #welcome) {
     display: block;
 }
@@ -36,6 +38,7 @@ html, body {
 #main + #footer, #welcome + #footer {
     display: block;
 }
+*/
 
 #main {
     padding: 14rem 4rem;
