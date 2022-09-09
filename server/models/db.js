@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-global.env = 'development';
+global.env = 'production';
 
 // DB connection (MySQL)
 let pass = env === 'production' ? 'gQB36gRAgVcY4aYw@' : '';
