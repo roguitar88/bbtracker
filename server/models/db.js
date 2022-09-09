@@ -1,4 +1,6 @@
 const Sequelize = require('sequelize');
+require('dotenv').config();
+// console.log(process.env);
 // global.env = 'development';
 global.environment = process.env.NODE_ENV || 'development';
 
