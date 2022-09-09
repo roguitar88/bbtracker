@@ -3,6 +3,17 @@ import React from 'react';
 import auth from './auth';
 import Logo from './assets/img/logo.png';
 // import Cover from './assets/img/baskteball-cover.jpg'
+import history from './utils/history';
+
+const signout = () => {
+  if (auth.isAuthenticated()) {
+    let userId = localStorage.getItem('userId');
+    auth.logout(userId);
+
+    history.push('/signin');
+    history.go();
+  }
+}
 
 let navBtns;
 if (!auth.isAuthenticated()) {
@@ -16,7 +27,7 @@ if (!auth.isAuthenticated()) {
 } else {
   navBtns = 
   <ul>
-    <li><a href="/signout"><button>Sign Out</button></a></li>
+    <li><button onClick={signout}>Sign Out</button></li>
     <li><a href="/app"><button>Get the App</button></a></li>
   </ul>
   ;
