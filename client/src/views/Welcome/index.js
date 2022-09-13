@@ -18,7 +18,8 @@ function Welcome() {
       id: localStorage.getItem('userId')
     }).then((response) => {
       // console.log(response);
-      if (response.data.success) setName(response.data.data[0].name);
+      // if (response.data.success) setName(response.data.data[0].name);
+      if (response.data.success) setName(response.data.data.name);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

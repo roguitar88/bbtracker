@@ -7,22 +7,17 @@ const UserSchema = mongoose.Schema({
         type: String,
         require: true // Mandatory
     },
-    surname: {
-        type: String,
-        require: true
-    },
-    age: {
-        type: Number,
-        require: true
-    },
     email: {
         type: String,
         require: true
     },
-    country: {
-        type: String
+    password: {
+        type: String,
+        require: true
     }
 });
+
+// To delete the document: db.users.deleteMany({})
 
 // Collection
 mongoose.model('users', UserSchema);

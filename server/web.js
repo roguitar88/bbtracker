@@ -33,10 +33,9 @@ app.use(session({
 // a variable to save a session
 // var session;
 
-// testing MongoDB CRUD
-app.get('/', (req, res) => {
+app.get('/', (req, res) => {    
     /*
-    // CREATE
+    // CREATE (MongoDB)
     new User({
         name: 'Jeca',
         surname: 'Tatu',
@@ -48,19 +47,26 @@ app.get('/', (req, res) => {
     }).catch((err) => {
         console.log('Erro: ' + err);
     });
+
+    // User.insertMany([
+        // {"name": "Haroldo", "email": "haroldo@gmail.com", "password": "123147Poi@"},
+        // {"name": "Tobias", "email": "tobias@gmail.com", "password": "123147Poi@"}
+    // ]);
     */
     
-    // READ
+    /*
+    // READ (MongoDB)
     User.find().then((data) => {
         console.log(data);
     }).catch((err) => {
         console.log(err);
     });
     res.send('Testing backend!');
+    */
 });
 
 app.get('/edit/:id', (req, res) => {
-    // UPDATE
+    // UPDATE (MongoDB)
     User.findOne({_id: req.params.id}).then((data) => {
         // console.log(data);
         data.email = 'jamileumanoites@gmail.com'; // Updating the email
@@ -74,7 +80,7 @@ app.get('/edit/:id', (req, res) => {
 });
 
 app.get('/delete/:id', (req, res) => {
-    // DELETE
+    // DELETE (MongoDB)
     // .remove() is deprecated. Use deleteOne, deleteMany or bulkWrite
     User.deleteOne({_id: req.params.id}).then((data) => {
         res.send('Usuário ID ' + req.params.id + ' deletado com sucesso!');
@@ -112,6 +118,7 @@ app.post('/user/new', (req, res) => {
     // let errorType = new Array();
 
     /*
+    // MySQL
     User.findAll({
         raw: true,
         where: {
@@ -119,6 +126,7 @@ app.post('/user/new', (req, res) => {
         }
     })
     */
+    // MongoDB
     User.findOne({
         where: {email: email}
     })
@@ -143,6 +151,7 @@ app.post('/user/new', (req, res) => {
                     // console.log(err);
                     // res.send({success: false, msg: err});
                 // } else {
+                    // MongoDB
                     new User({
                         name: name,
                         email: email,
@@ -156,6 +165,7 @@ app.post('/user/new', (req, res) => {
                         res.send({success: false, msg: err});
                     });
                     /*
+                    // MySQL
                     User.create({
                         name: name,
                         email: email,
@@ -186,12 +196,20 @@ app.post('/user/new', (req, res) => {
 app.post('/user/data', (req, res) => {
     const userId = req.body.id;
 
+    /*
+    // MySQL
     User.findAll({
         raw: true,
         where: {
             id: userId
         }
-    }).then((data) => {
+    })
+    */
+    // MongoDB
+    User.findOne({
+        where: {_id: userId}
+    })
+    .then((data) => {
         res.send({success: true, data: data});
     }).catch((err) => {
         // console.log(err);
@@ -204,12 +222,20 @@ app.post('/user/login', (req, res) => {
     const password = req.body.password;
     // let error = new Array();
 
+    /*
+    // MySQL
     User.findAll({
         raw: true,
         where: {
             email: email
         }
-    }).then((data) => {
+    })
+    */
+    // MongoDB
+    User.findOne({
+        where: {email: email}
+    })
+    .then((data) => {
         if (Object.keys(data).length == 0) {
             // error.push(0);
             console.log('Email not found');
@@ -217,12 +243,14 @@ app.post('/user/login', (req, res) => {
         } else {
             // bcrypt.compare(password, data[0].password, (error, result) => {
                 // if (!result) {
-                if (password !== data[0].password) {
+                // if (password !== data[0].password) {
+                if (password !== data.password) {
                     console.log('Password incorrect');
                     res.send({success: false, msg: 'Password incorrect'});
                 } else {
                     console.log('User logged in successfully!');
-                    res.send({success: true, msg: 'User logged in successfully!', userId: data[0].id});
+                    // res.send({success: true, msg: 'User logged in successfully!', userId: data[0].id});
+                    res.send({success: true, msg: 'User logged in successfully!', userId: data._id});
                     // res.redirect('/welcome');
                 }
             // });
