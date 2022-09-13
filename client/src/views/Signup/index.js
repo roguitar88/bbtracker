@@ -17,8 +17,8 @@ import auth from '../../auth';
 
 import history from '../../utils/history';
 
-var baseUrl = window.location.origin;
-// var baseUrl = 'http://localhost';
+// var baseUrl = window.location.origin;
+var baseUrl = 'http://localhost';
 
 function Signup() {
   // let [loginStatus, setLoginStatus] = useState(false);

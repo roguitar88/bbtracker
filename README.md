@@ -202,11 +202,3 @@ sudo firewall-cmd --zone=public --list-ports
 ```
 
 *Warning*: In your server (more precisely in the application directory), don't forget to create the .env file and add ```NODE_ENV="production"```.
-
-As for the server-side part, that is, the NodeJS server, a good thing to keep it running all the time is to use PM2 like this, instead of just ```sudo node index.js```:
-
-```
-sudo pm2 start index.js
-```
-
-For more info about PM2, check ***[https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-18-04-pt](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-18-04-pt)***
