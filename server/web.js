@@ -48,7 +48,8 @@ app.get('/', (req, res) => {
         console.log('Erro: ' + err);
     });
     */
-    User.dropDatabase();
+
+    // User.dropDatabase();
 
     /*
     User.insertMany([
@@ -57,7 +58,7 @@ app.get('/', (req, res) => {
     ]);
     */
     
-    res.send('Testing backend!');
+    // res.send('Testing backend!');
 
     /*
     // READ (MongoDB)
