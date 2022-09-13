@@ -49,10 +49,12 @@ app.get('/', (req, res) => {
     });
     */
 
+    /*
     User.insertMany([
         {"name": "Haroldo", "email": "haroldo@gmail.com", "password": "123147Poi@"},
         {"name": "Tobias", "email": "tobias@gmail.com", "password": "123147Poi@"}
     ]);
+    */
     
     /*
     // READ (MongoDB)
