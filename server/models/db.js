@@ -6,7 +6,7 @@ global.appEnvironment = process.env.NODE_ENV;
 var connect_url = 'mongodb://127.0.0.1:27017/bbtracker';
 
 mongoose.connect(connect_url).then(() => {
-    console.log('MongoDB Conectado com sucesso!');
+    console.log('MongoDB connected successfully!');
 }).catch((err) => {
     console.log('Erro: ' + err);
 });

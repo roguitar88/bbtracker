@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
         email: 'jeca.tatu@gmail.com',
         country: 'Brazil'
     }).save().then(() => {
-        console.log('Usuário inserido com sucesso');
+        console.log('User inserted successfully');
     }).catch((err) => {
         console.log('Erro: ' + err);
     });
@@ -72,11 +72,10 @@ app.get('/edit/:id', (req, res) => {
     User.findOne({_id: req.params.id}).then((data) => {
         // console.log(data);
         data.email = 'jamileumanoites@gmail.com'; // Updating the email
-        // console.log('Editando os bagui do usuário de ID ' + req.params.id);
-        res.send('Editando os bagui do usuário de ID ' + req.params.id); // {data: data}
+        res.send('Editing user ID ' + req.params.id); // {data: data}
     }).catch((err) => {
-        res.send('Erro: este usuário não ecsiste. ' + err);
-        // req.flash('Erro: este usuário não ecsiste. ' + err);
+        res.send('Error: this user does not exist. ' + err);
+        // req.flash('Error: this user does not exist. ' + err);
         // res.redirect('/');
     });
 });
@@ -85,7 +84,7 @@ app.get('/delete/:id', (req, res) => {
     // DELETE (MongoDB)
     // .remove() is deprecated. Use deleteOne, deleteMany or bulkWrite
     User.deleteOne({_id: req.params.id}).then((data) => {
-        res.send('Usuário ID ' + req.params.id + ' deletado com sucesso!');
+        res.send('User ID ' + req.params.id + ' deleted successfully!');
         // res.redirect('/');
     }).catch((err) => {
         console.log(err);
