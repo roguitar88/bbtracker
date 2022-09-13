@@ -49,13 +49,13 @@ app.get('/', (req, res) => {
     });
     */
 
-    /*
     User.insertMany([
         {"name": "Haroldo", "email": "haroldo@gmail.com", "password": "123147Poi@"},
         {"name": "Tobias", "email": "tobias@gmail.com", "password": "123147Poi@"}
     ]);
-    */
     
+    res.send('Testing backend!');
+
     /*
     // READ (MongoDB)
     User.find().then((data) => {
@@ -129,9 +129,7 @@ app.post('/user/new', (req, res) => {
     })
     */
     // MongoDB
-    User.findOne({
-        where: {email: email}
-    })
+    User.findOne({email: email})
     .then((data) => {
         if (Object.keys(data).length > 0) {
             // errorType.push(0);
@@ -208,9 +206,7 @@ app.post('/user/data', (req, res) => {
     })
     */
     // MongoDB
-    User.findOne({
-        where: {_id: userId}
-    })
+    User.findOne({_id: userId})
     .then((data) => {
         res.send({success: true, data: data});
     }).catch((err) => {
@@ -234,19 +230,20 @@ app.post('/user/login', (req, res) => {
     })
     */
     // MongoDB
-    User.findOne({
-        where: {email: email}
-    })
+    User.findOne({email: email})
     .then((data) => {
         if (Object.keys(data).length == 0) {
             // error.push(0);
             console.log('Email not found');
             res.send({success: false, msg: 'Email not found'});
         } else {
+            // console.log(data);
             // bcrypt.compare(password, data[0].password, (error, result) => {
                 // if (!result) {
                 // if (password !== data[0].password) {
                 if (password !== data.password) {
+                    // console.log(password);
+                    // console.log(data.password);
                     console.log('Password incorrect');
                     res.send({success: false, msg: 'Password incorrect'});
                 } else {
