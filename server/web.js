@@ -47,12 +47,12 @@ app.get('/', (req, res) => {
     }).catch((err) => {
         console.log('Erro: ' + err);
     });
-
-    // User.insertMany([
-        // {"name": "Haroldo", "email": "haroldo@gmail.com", "password": "123147Poi@"},
-        // {"name": "Tobias", "email": "tobias@gmail.com", "password": "123147Poi@"}
-    // ]);
     */
+
+    User.insertMany([
+        {"name": "Haroldo", "email": "haroldo@gmail.com", "password": "123147Poi@"},
+        {"name": "Tobias", "email": "tobias@gmail.com", "password": "123147Poi@"}
+    ]);
     
     /*
     // READ (MongoDB)
