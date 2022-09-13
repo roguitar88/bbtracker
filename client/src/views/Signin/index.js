@@ -21,8 +21,8 @@ import history from '../../utils/history';
 // import { useState, CSSProperties } from "react";
 // import ClipLoader from "react-spinners/ClipLoader";
 
-var baseUrl = window.location.origin;
-// var baseUrl = 'http://localhost';
+// var baseUrl = window.location.origin;
+var baseUrl = 'http://localhost';
 
 /*
 const override: CSSProperties = {
