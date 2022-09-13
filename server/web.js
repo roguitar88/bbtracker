@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-// const db  = require('./models/db');
+// const User  = require('./models/db');
 const User = require('./models/User');
 // const User = UserTest.User;
 // const { QueryTypes } = require('sequelize');
@@ -33,11 +33,57 @@ app.use(session({
 // a variable to save a session
 // var session;
 
-/*
+// testing MongoDB CRUD
 app.get('/', (req, res) => {
+    /*
+    // CREATE
+    new User({
+        name: 'Jeca',
+        surname: 'Tatu',
+        age: 45,
+        email: 'jeca.tatu@gmail.com',
+        country: 'Brazil'
+    }).save().then(() => {
+        console.log('Usuário inserido com sucesso');
+    }).catch((err) => {
+        console.log('Erro: ' + err);
+    });
+    */
+    
+    // READ
+    User.find().then((data) => {
+        console.log(data);
+    }).catch((err) => {
+        console.log(err);
+    });
     res.send('Testing backend!');
 });
-*/
+
+app.get('/edit/:id', (req, res) => {
+    // UPDATE
+    User.findOne({_id: req.params.id}).then((data) => {
+        // console.log(data);
+        data.email = 'jamileumanoites@gmail.com'; // Updating the email
+        // console.log('Editando os bagui do usuário de ID ' + req.params.id);
+        res.send('Editando os bagui do usuário de ID ' + req.params.id); // {data: data}
+    }).catch((err) => {
+        res.send('Erro: este usuário não ecsiste. ' + err);
+        // req.flash('Erro: este usuário não ecsiste. ' + err);
+        // res.redirect('/');
+    });
+});
+
+app.get('/delete/:id', (req, res) => {
+    // DELETE
+    // .remove() is deprecated. Use deleteOne, deleteMany or bulkWrite
+    User.deleteOne({_id: req.params.id}).then((data) => {
+        res.send('Usuário ID ' + req.params.id + ' deletado com sucesso!');
+        // res.redirect('/');
+    }).catch((err) => {
+        console.log(err);
+        res.send(err);
+    });
+});
 
 /*
 app.get('/', (req, res) => {
@@ -65,12 +111,18 @@ app.post('/user/new', (req, res) => {
     let alright = true;
     // let errorType = new Array();
 
+    /*
     User.findAll({
         raw: true,
         where: {
             email: email
         }
-    }).then((data) => {
+    })
+    */
+    User.findOne({
+        where: {email: email}
+    })
+    .then((data) => {
         if (Object.keys(data).length > 0) {
             // errorType.push(0);
             alright = false;
@@ -91,23 +143,32 @@ app.post('/user/new', (req, res) => {
                     // console.log(err);
                     // res.send({success: false, msg: err});
                 // } else {
+                    new User({
+                        name: name,
+                        email: email,
+                        password: password,
+                    }).save().then((user) => {
+                        console.log('User registered successfully');
+                        res.send({success: true, msg: 'User registered successfully', userId: user.id});
+                        // res.redirect('/welcome');                    
+                    }).catch((err) => {
+                        console.log(err);
+                        res.send({success: false, msg: err});
+                    });
+                    /*
                     User.create({
                         name: name,
                         email: email,
                         password: password //hash
                     }).then((user) => {
-                        /*
-                        req.session.userId = data[0].id;
-                        console.log(req.session.userId);
-                        */
-
                         console.log('User registered successfully');
                         res.send({success: true, msg: 'User registered successfully', userId: user.dataValues.id});
                         // res.redirect('/welcome');
                     }).catch((err) => {
                         console.log(err);
                         res.send({success: false, msg: err});
-                    });  
+                    });
+                    */
                 // }  
             // }).catch((err) => {
                 // console.log(err);

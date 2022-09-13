@@ -1,3 +1,18 @@
+// MongoDB
+const mongoose = require('mongoose');
+
+global.appEnvironment = process.env.NODE_ENV;
+
+mongoose.connect('mongodb://localhost:27017/testingmongoose').then(() => {
+    console.log('MongoDB Conectado com sucesso!');
+}).catch((err) => {
+    console.log('Erro: ' + err);
+});
+
+module.exports = mongoose;
+
+/*
+// MySQL
 const Sequelize = require('sequelize');
 require('dotenv').config();
 // console.log(process.env);
@@ -18,16 +33,4 @@ module.exports = {
     Sequelize: Sequelize,
     sequelize: sequelize
 }
-
-/*
-const mysql = require('mysql2');
-
-const db = mysql.createConnection({
-    host: process.env.localhost,
-    user: process.env.root,
-    password: process.env,
-    database: process.env.roguitar_olimppius
-});
-
-module.exports = db;
 */

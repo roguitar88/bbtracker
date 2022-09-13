@@ -51,9 +51,10 @@ node index.js
 
 And... That's it!
 
-*Warning*: Don't forget to create the .env file and add ```NODE_ENV="development"```.
+*Warning*: Don't forget to create the .env file and add ```NODE_ENV="development"```. That .env file must also be included in the .gitignore file
 If you're using Windows, try to use this project with Laragon and in Nginx, add a config file like this:
 
+### Nginx configuration (to be run with *build*: RECOMMENDED):
 ```
 server {
     listen 80;
@@ -76,6 +77,51 @@ server {
 ```
 
 Then run ```npm run build``` and restart Nginx.
+
+### Nginx configuration (manipulating ports through reverse proxy: NOT RECOMMENDED):
+
+```
+map $http_upgrade $connection_upgrade {
+    default upgrade;
+    '' close;
+}
+
+upstream client {
+	server localhost:3000;
+}
+
+upstream api {
+    server localhost:3001;
+}
+
+server {
+    listen 80;
+    server_name bbtracker.test *.bbtracker.test;
+    		
+    location / {
+		proxy_pass http://client;
+	}
+	
+	location /ws {
+		proxy_pass http://client;
+		proxy_http_version 1.1;
+		proxy_set_header    Upgrade $http_upgrade;
+		#proxy_set_header    Connection 'upgrade';
+		proxy_set_header    Connection $connection_upgrade;
+	}
+	
+	location /api {
+		rewrite /api/(.*) /$1 break;
+		proxy_pass http://api;
+	}
+	
+    charset utf-8;
+	
+    location ~ /\.ht {
+        deny all;
+    }
+}
+```
 
 ## Running project in production
 
@@ -139,6 +185,20 @@ Run ```npm run build```, restart Nginx and...
 
 That's it!
 
-*Note:* React (client) will be running on port 3000, whilst Node (client) will be running on port 3001. So just make sure those ports are freed up in the firewall/network settings.
+*Note:* Node (client) will be running on port 3001. So just make sure those ports are freed up in the firewall/network settings. For that purpose, if you're using a Cloud service, add this port to your network gateway. Then, inside your server or VM, just install something like *Firewalld* and enable it like this:
 
-*Warning*: Don't forget to create the .env file and add ```NODE_ENV="production"```.
+```
+# Installing Firewalld
+sudo apt install firewalld
+
+# Adding the port 3001 (but it can be any other) as the default one for running Node server
+sudo firewall-cmd --zone=public --permanent --add-port=3001/tcp
+
+# Don't forget to reload Firewalld in order that the changes are reflected
+sudo firewall-cmd --reload
+
+# Check whether port is already there
+sudo firewall-cmd --zone=public --list-ports
+```
+
+*Warning*: In your server (more precisely in the application directory), don't forget to create the .env file and add ```NODE_ENV="production"```.

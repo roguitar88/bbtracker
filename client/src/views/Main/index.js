@@ -10,7 +10,18 @@ import appstore from '../../assets/img/appstore.png';
 
 // import history from '../../utils/history';
 
-function Main() {
+function Main() { 
+  /*
+  let regex = /^[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}/;
+  let entry = '53147430272';
+
+  if (entry.match(regex)) {
+    console.log('Entrada válida');
+  } else {
+    console.log('Entrada inválida');
+  }
+  */
+
   // let [loginStatus, setLoginStatus] = useState(false);
   // let navigate = useNavigate();
 
