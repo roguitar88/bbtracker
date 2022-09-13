@@ -1,3 +1,4 @@
+/*
 // MongoDB
 const mongoose  = require('./db');
 
@@ -25,8 +26,8 @@ mongoose.model('users', UserSchema);
 const user = mongoose.model('users');
 
 module.exports = user;
+*/
 
-/*
 // MYSQL
 const db  = require('./db');
 // const db2 = require('./db_prod');
@@ -52,4 +53,3 @@ const User = db.sequelize.define('users', {
 
 // User.sync({force: true});
 module.exports = User;
-*/

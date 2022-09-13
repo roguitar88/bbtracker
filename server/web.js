@@ -122,7 +122,6 @@ app.post('/user/new', (req, res) => {
     let alright = true;
     // let errorType = new Array();
 
-    /*
     // MySQL
     User.findAll({
         raw: true,
@@ -130,9 +129,8 @@ app.post('/user/new', (req, res) => {
             email: email
         }
     })
-    */
     // MongoDB
-    User.findOne({email: email})
+    // User.findOne({email: email})
     .then((data) => {
         if (Object.keys(data).length > 0) {
             // errorType.push(0);
@@ -154,6 +152,7 @@ app.post('/user/new', (req, res) => {
                     // console.log(err);
                     // res.send({success: false, msg: err});
                 // } else {
+                    /*
                     // MongoDB
                     new User({
                         name: name,
@@ -161,13 +160,13 @@ app.post('/user/new', (req, res) => {
                         password: password,
                     }).save().then((user) => {
                         console.log('User registered successfully');
-                        res.send({success: true, msg: 'User registered successfully', userId: user.id});
+                        res.send({success: true, msg: 'User registered successfully', userId: user._id});
                         // res.redirect('/welcome');                    
                     }).catch((err) => {
                         console.log(err);
                         res.send({success: false, msg: err});
                     });
-                    /*
+                    */
                     // MySQL
                     User.create({
                         name: name,
@@ -181,7 +180,6 @@ app.post('/user/new', (req, res) => {
                         console.log(err);
                         res.send({success: false, msg: err});
                     });
-                    */
                 // }  
             // }).catch((err) => {
                 // console.log(err);
@@ -199,7 +197,6 @@ app.post('/user/new', (req, res) => {
 app.post('/user/data', (req, res) => {
     const userId = req.body.id;
 
-    /*
     // MySQL
     User.findAll({
         raw: true,
@@ -207,9 +204,8 @@ app.post('/user/data', (req, res) => {
             id: userId
         }
     })
-    */
     // MongoDB
-    User.findOne({_id: userId})
+    // User.findOne({_id: userId})
     .then((data) => {
         res.send({success: true, data: data});
     }).catch((err) => {
@@ -223,7 +219,6 @@ app.post('/user/login', (req, res) => {
     const password = req.body.password;
     // let error = new Array();
 
-    /*
     // MySQL
     User.findAll({
         raw: true,
@@ -231,9 +226,8 @@ app.post('/user/login', (req, res) => {
             email: email
         }
     })
-    */
     // MongoDB
-    User.findOne({email: email})
+    // User.findOne({email: email})
     .then((data) => {
         if (Object.keys(data).length == 0) {
             // error.push(0);
@@ -243,16 +237,16 @@ app.post('/user/login', (req, res) => {
             // console.log(data);
             // bcrypt.compare(password, data[0].password, (error, result) => {
                 // if (!result) {
-                // if (password !== data[0].password) {
-                if (password !== data.password) {
+                if (password !== data[0].password) {
+                // if (password !== data.password) {
                     // console.log(password);
                     // console.log(data.password);
                     console.log('Password incorrect');
                     res.send({success: false, msg: 'Password incorrect'});
                 } else {
                     console.log('User logged in successfully!');
-                    // res.send({success: true, msg: 'User logged in successfully!', userId: data[0].id});
-                    res.send({success: true, msg: 'User logged in successfully!', userId: data._id});
+                    res.send({success: true, msg: 'User logged in successfully!', userId: data[0].id});
+                    // res.send({success: true, msg: 'User logged in successfully!', userId: data._id});
                     // res.redirect('/welcome');
                 }
             // });

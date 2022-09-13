@@ -1,3 +1,4 @@
+/*
 // MongoDB
 const mongoose = require('mongoose');
 
@@ -12,8 +13,8 @@ mongoose.connect(connect_url).then(() => {
 });
 
 module.exports = mongoose;
+*/
 
-/*
 // MySQL
 const Sequelize = require('sequelize');
 require('dotenv').config();
@@ -35,4 +36,3 @@ module.exports = {
     Sequelize: Sequelize,
     sequelize: sequelize
 }
-*/
