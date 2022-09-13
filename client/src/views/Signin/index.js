@@ -107,7 +107,7 @@ function Signin() {
     // document.querySelector('.loading').style.display = 'block';
     setLoading('block');
     // console.log(values);
-    Axios.post(baseUrl + ":3001/user/login", {
+    Axios.post("http://localhost:3001/user/login", {
       email: values.email, // values.email
       password: values.password // values.password
     }).then((response) => {
