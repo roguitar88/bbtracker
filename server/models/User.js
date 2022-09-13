@@ -24,8 +24,6 @@ mongoose.model('users', UserSchema);
 
 const user = mongoose.model('users');
 
-user.dropDatabase();
-
 module.exports = user;
 
 /*
