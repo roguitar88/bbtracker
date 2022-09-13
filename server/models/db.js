@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 global.appEnvironment = process.env.NODE_ENV;
 
-var connect_url = 'mongodb://localhost:27017/bbtracker';
+var connect_url = 'mongodb://localhost:27017/testingmongoose';
 
 mongoose.connect(connect_url).then(() => {
     console.log('MongoDB connected successfully!');

@@ -48,11 +48,14 @@ app.get('/', (req, res) => {
         console.log('Erro: ' + err);
     });
     */
+    User.dropDatabase();
 
+    /*
     User.insertMany([
         {"name": "Haroldo", "email": "haroldo@gmail.com", "password": "123147Poi@"},
         {"name": "Tobias", "email": "tobias@gmail.com", "password": "123147Poi@"}
     ]);
+    */
     
     res.send('Testing backend!');
 
