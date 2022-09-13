@@ -21,7 +21,8 @@ import history from '../../utils/history';
 // import { useState, CSSProperties } from "react";
 // import ClipLoader from "react-spinners/ClipLoader";
 
-var baseUrl = window.location.origin;
+// var baseUrl = window.location.origin;
+var baseUrl = 'http://localhost';
 
 /*
 const override: CSSProperties = {
@@ -107,7 +108,7 @@ function Signin() {
     // document.querySelector('.loading').style.display = 'block';
     setLoading('block');
     // console.log(values);
-    Axios.post("http://localhost:3001/user/login", {
+    Axios.post(baseUrl + ":3001/user/login", {
       email: values.email, // values.email
       password: values.password // values.password
     }).then((response) => {

@@ -6,7 +6,8 @@ import Axios from 'axios';
 // import Basketboy from '../../assets/img/basketboy.jpg';
 import basketballWoman from '../../assets/img/basketball-woman-transparent.png';
 
-var baseUrl = window.location.origin;
+// var baseUrl = window.location.origin;
+var baseUrl = 'http://localhost';
 
 function Welcome() {
   const [name, setName] = useState("");
