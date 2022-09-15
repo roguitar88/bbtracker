@@ -17,11 +17,13 @@ import auth from '../../auth';
 
 import history from '../../utils/history';
 
+import {baseUrl} from '../../utils/global';
+
 // import Spinner from './Spinner';
 // import { useState, CSSProperties } from "react";
 // import ClipLoader from "react-spinners/ClipLoader";
 
-var baseUrl = window.location.origin;
+// var baseUrl = window.location.origin;
 // var baseUrl = 'http://localhost';
 
 /*

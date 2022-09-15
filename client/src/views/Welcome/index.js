@@ -6,8 +6,9 @@ import Axios from 'axios';
 // import Basketboy from '../../assets/img/basketboy.jpg';
 import basketballWoman from '../../assets/img/basketball-woman-transparent.png';
 
-var baseUrl = window.location.origin;
+// var baseUrl = window.location.origin;
 // var baseUrl = 'http://localhost';
+import {baseUrl} from '../../utils/global';
 
 function Welcome() {
   const [name, setName] = useState("");
@@ -19,8 +20,8 @@ function Welcome() {
       id: localStorage.getItem('userId')
     }).then((response) => {
       // console.log(response);
-      // if (response.data.success) setName(response.data.data[0].name);
-      if (response.data.success) setName(response.data.data.name);
+      if (response.data.success) setName(response.data.data[0].name);
+      // if (response.data.success) setName(response.data.data.name);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

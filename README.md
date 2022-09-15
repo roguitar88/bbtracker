@@ -43,10 +43,10 @@ After creating the **node_modules** directory, and to initialize the app service
 yarn start
 ```
 
-And finally don't forget to initialize the server-side part of the application:
+And finally don't forget to initialize the server-side part of the application, by using Nodemon (you're recommended to install it via the command ```sudo npm install -g nodemon```):
 
 ```
-node index.js
+nodemon index.js
 ```
 
 And... That's it!
@@ -177,7 +177,7 @@ sudo yarn start
 
 In server directory run:
 ```
-sudo node index.js
+sudo nodemon index.js
 ```
 
 ### Build

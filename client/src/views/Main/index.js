@@ -9,8 +9,9 @@ import googleplay from '../../assets/img/googleplay.png';
 import appstore from '../../assets/img/appstore.png';
 
 // import history from '../../utils/history';
+// var baseUrl = window.location.origin;
 
-function Main() { 
+function Main() {
   /*
   let regex = /^[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}/;
   let entry = '53147430272';
