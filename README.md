@@ -5,7 +5,7 @@ BBTracker is an application basically made with React and Node.js whose main goa
 
 This application has been made thanks to the following technologies:
 * ReactJS (version 18.2.0), Yarn (version 1.22.19)
-* Node.js (version 12.22.12)
+* Node.js (version 16.7.0 LTS)
 * Nginx (Web server, version 1.18.0)
 * OCI (Oracle Cloud Infrastructure): VM with 4GB RAM and 1 CPU core, Ubuntu 20.04 LTS
 * MySQL (version 8.0.30)

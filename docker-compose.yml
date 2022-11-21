@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:11.5
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=pass123
+      - POSTGRES_DB=bbtracker
+    ports:
+      - 5432:5432
+    networks:
+      - shared-network
+    volumes:
+      - ./postgres-db:/var/lib/postgresql/data
+
+  api:
+    container_name: bbtracker
+    restart: unless-stopped
+    image: bbtracker-server-prod:1.0.0
+    build:
+      context: api
+      target: production
+      dockerfile: Dockerfile
+    ports:
+      - 3001:3001
+    networks:
+      - shared-network
+    depends on:
+      - postgres
+
+  client:
+    container_name: bbtracker
+    restart: unless-stopped
+    image: bbtracker-client-prod:1.0.0
+    build:
+      context: client
+      target: production
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    networks:
+      - shared-network
+    depends on:
+      - api
+
+networks:
+  shared-network
