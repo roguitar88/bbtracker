@@ -8,7 +8,7 @@ FROM node:16.7.0-slim
 WORKDIR /client
 
 COPY package.json ./
-COPY package-lock.json ./
+# COPY package-lock.json ./
 
 COPY ./ ./
 
