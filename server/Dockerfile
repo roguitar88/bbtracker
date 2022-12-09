@@ -1,16 +1,31 @@
-FROM node:16 AS Production
+# FROM node:16 AS Production
+# FROM node:16
+FROM node:16.7.0-slim
 
-ENV NODE_ENV=production
+# ENV NODE_ENV=production
+# Install system dependencies
+# RUN apt-get update && apt-get install -y \
+    # curl \
+    # zip \
+    # unzip \
+    # vim nano \
+    # cron
 
-WORKDIR /var/www/html/bbtracker/server
+# Clear cache
+# RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+# WORKDIR /var/www/server
+WORKDIR /server
 
 COPY package.json ./
 COPY package-lock.json ./
 
+COPY ./ ./
+
 RUN npm install
+# RUN npm run build
+# RUN node index.js
 
-COPY . .
-
-RUN npm run build
-
-CMD ["sh", "-c", "npm run devStart"]
+# CMD ["sh", "-c", "npm run start"]
+CMD ["npm", "run", "start"]
+# npm devStart

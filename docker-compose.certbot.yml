@@ -1,0 +1,14 @@
+version: '3.3'
+
+services:
+    # Certbot service
+    certbot:
+        container_name: bbtracker-certbot
+        # image: certbot/certbot:latest
+        image: certbot/certbot:arm32v6-latest
+        volumes:
+            - ./.certbot/www:/var/www/.certbot/www:rw
+            - ./.certbot/conf:/etc/letsencrypt/:rw
+        command: certonly --webroot -w /var/www/.certbot/www --non-interactive --email rogeriobsoares5@gmail.com -d bbtracker.tk -d www.bbtracker.tk --agree-tos
+        # --non-interactive or --force-interactive
+        # https://www.programonaut.com/setup-ssl-with-docker-nginx-and-lets-encrypt/

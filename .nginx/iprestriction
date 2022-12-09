@@ -1,0 +1,8 @@
+satisfy all;
+
+#allow 189.63.7.167;
+allow 189.63.4.108;
+allow 127.0.0.1; #allow localhost via SSH tunnels
+allow 207.244.231.35;
+#allow 190.15.52.211;
+deny all;

@@ -3,13 +3,15 @@ const app = express();
 const cors = require('cors');
 // const User  = require('./models/db');
 const User = require('./models/User');
+const FoundDevices = require('./models/FoundDevices');
 // const User = UserTest.User;
 // const { QueryTypes } = require('sequelize');
 const hp = require('./helper');
+const Browser = require('nodecast-js');
 
 app.use(express.json());
 app.use(cors({
-    origin: ['http://localhost', 'http://localhost:3000', 'http://bbtracker.test:3000', 'http://bbtracker.test', 'https://bbtracker.tk:3000', 'https://bbtracker.tk'],
+    origin: ['http://localhost:3000', 'http://localhost', 'http://bbtracker.test:3000', 'http://bbtracker.test', 'https://bbtracker.tk:3000', 'https://bbtracker.tk', 'http://bbtracker.example:3000', 'http://bbtracker.example'],
     // origin: [baseUrl],
     methods: ['GET', 'POST'],
     credentials: true
@@ -32,6 +34,8 @@ app.use(session({
 
 // a variable to save a session
 // var session;
+// console.log(hp.nDate + ' ' + hp.nTime);
+// console.log(hp.nDate);
 
 app.get('/', (req, res) => {    
     /*
@@ -122,7 +126,7 @@ app.post('/user/new', (req, res) => {
     let alright = true;
     // let errorType = new Array();
 
-    // MySQL
+    // MySQL or PostgreSQL
     User.findAll({
         raw: true,
         where: {
@@ -167,13 +171,15 @@ app.post('/user/new', (req, res) => {
                         res.send({success: false, msg: err});
                     });
                     */
-                    // MySQL
+                    // MySQL or PostgreSQL
                     User.create({
-                        name: name,
+                        full_name: name,
                         email: email,
-                        password: password //hash
+                        password: password, //hash
+                        created_at: hp.nDate
                     }).then((user) => {
                         console.log('User registered successfully');
+                        console.log(user);
                         res.send({success: true, msg: 'User registered successfully', userId: user.dataValues.id});
                         // res.redirect('/welcome');
                     }).catch((err) => {
@@ -197,8 +203,9 @@ app.post('/user/new', (req, res) => {
 app.post('/user/data', (req, res) => {
     const userId = req.body.id;
 
-    // MySQL
-    User.findAll({
+    // MySQL or PostgreSQL
+    // User.findAll({
+    User.findOne({
         raw: true,
         where: {
             id: userId
@@ -219,8 +226,9 @@ app.post('/user/login', (req, res) => {
     const password = req.body.password;
     // let error = new Array();
 
-    // MySQL
-    User.findAll({
+    // MySQL or PostgreSQL
+    // User.findAll({
+    User.findOne({
         raw: true,
         where: {
             email: email
@@ -229,7 +237,7 @@ app.post('/user/login', (req, res) => {
     // MongoDB
     // User.findOne({email: email})
     .then((data) => {
-        if (Object.keys(data).length == 0) {
+        if (data === null) { //|| Object.keys(data).length == 0
             // error.push(0);
             console.log('Email not found');
             res.send({success: false, msg: 'Email not found'});
@@ -237,22 +245,126 @@ app.post('/user/login', (req, res) => {
             // console.log(data);
             // bcrypt.compare(password, data[0].password, (error, result) => {
                 // if (!result) {
-                if (password !== data[0].password) {
-                // if (password !== data.password) {
+                // if (password !== data[0].password) {
+                if (password !== data.password) {
                     // console.log(password);
                     // console.log(data.password);
                     console.log('Password incorrect');
                     res.send({success: false, msg: 'Password incorrect'});
                 } else {
                     console.log('User logged in successfully!');
-                    res.send({success: true, msg: 'User logged in successfully!', userId: data[0].id});
+                    // res.send({success: true, msg: 'User logged in successfully!', userId: data[0].id});
                     // res.send({success: true, msg: 'User logged in successfully!', userId: data._id});
+                    res.send({success: true, msg: 'User logged in successfully!', userId: data.id});
                     // res.redirect('/welcome');
                 }
             // });
         }
     });
 });
+
+app.post('/browse', (req, res) => {
+    // let token = require('./token');
+    // let token = req.body.token;
+    let browser = new Browser();
+    browser.onDevice(function (device) {
+        device.onError(function (err) {
+        // device.on('uncaughtException', function (err) {
+            console.log(err);
+            res.send({success: false, msg: err});
+        });
+
+        // let store = require('store');
+        // let xml = device.xml;
+        // let name = device.name;
+
+        // data.devices.push({"xml": xml, "name": name, "token": token});
+        // store.set('devices_found', {"xml": xml, "name": name});
+        /*
+        // MySQL or PostgreSQL
+        FoundDevices.create({
+            device_name: name,
+            device_xml: xml,
+            browse_token: token
+        }).then((data) => {
+            // console.log(data);
+            // res.send({success: true, msg: data.dataValues.token});
+            // res.send({success: true, msg: token});
+            // res.redirect('/welcome');
+        }).catch((err) => {
+            // console.log(err);
+            // res.send({success: false, msg: err});
+        });
+        */
+        // console.log(store.get('devices_found'));
+        // if (t == 1) {
+            // console.log(data.devices[t].name);
+        // }
+        // console.log(data.devices);
+        // res.send({success: true, msg: data.devices});
+
+        // console.log(Object.entries(devices_found)[2]);
+
+        // t++;
+    });
+
+    browser.start();
+    // console.log(store.get('devices_found'));
+
+    setTimeout(function () {
+        /*
+        // MySQL or PostgreSQL
+        FoundDevices.findAll({
+            raw: true,
+            where: {
+                browse_token: token
+            }
+        })
+        // MongoDB
+        // User.findOne({browse_token: token})
+        .then((data) => {
+            if (Object.keys(data).length == 0) {
+                console.log('Error! No devices found');
+                res.send({success: false, msg: 'Error! No devices found'});
+            } else {
+                console.log(data);
+                // data[0].device_name
+                res.send({success: true, msg: data});
+            }
+        }).catch((err) => {
+            console.log(err);
+            res.send({success: false, msg: err});
+        });
+        */
+        /*
+        browser.getList().forEach(function(item) {
+            console.log(item);
+        });
+        */
+        browser.destroy();
+        res.send({success: true, msg: browser.getList()});
+        // res.send({success: true, msg: 'nothing'});
+    }, 5000);
+})
+
+/*
+// MySQL or PostgreSQL
+FoundDevices.findAll({
+    raw: true,
+    where: {
+        token: 'c4mnaxn4f94g6cyrt71hl4'
+    }
+})
+.then((data) => {
+    // console.log(data);
+    data.forEach(function(item) {
+        console.log(item.device_name);
+    });
+}).catch((err) => {
+    console.log(err);
+});
+*/
+
 
 /*
 app.get('/logout',(req, res) => {

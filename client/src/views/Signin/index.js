@@ -41,7 +41,7 @@ const override: CSSProperties = {
 */
 
 function Signin() {
-  console.log("You ok??");
+  // console.log("You ok??");
   /*
   let [email, setEmail] = useState("");
   let [password, setPassword] = useState("");

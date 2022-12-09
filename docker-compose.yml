@@ -1,48 +1,155 @@
-version: '3.8'
+version: '3.3'
+# version: '3.8'
 
 services:
+  # PostgreSQL
   postgres:
-    image: postgres:11.5
+    container_name: bbtracker-postgres
     restart: always
+    image: postgres:latest # postgres:11.5
+    # build:
+      # context: ./server/models
+      # dockerfile: Dockerfile
     environment:
-      - POSTGRES_PASSWORD=pass123
-      - POSTGRES_DB=bbtracker
+      # - POSTGRES_PASSWORD=${DB_PASSWORD}
+      # - POSTGRES_DB=${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME} # Is this important?
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE}
     ports:
-      - 5432:5432
+      - '5433:5432'
+    # working_dir: /
     networks:
       - shared-network
     volumes:
-      - ./postgres-db:/var/lib/postgresql/data
+      # - ./db:/var/lib/postgresql/data
+      # - ./.postgres/db/bbtracker.sql:/docker-entrypoint-initdb.d/bbtracker.sql
+      - ./.postgres/db:/docker-entrypoint-initdb.d/
+      # - ./.postgres/db/bbtracker.pgsql:/bbtracker.pgsql
+    # command: '/usr/bin/psql -U postgres bbtracker < /docker-entrypoint-initdb.d/bbtracker.pgsql'
 
-  api:
-    container_name: bbtracker
-    restart: unless-stopped
-    image: bbtracker-server-prod:1.0.0
+  # NodeJS server
+  server:
+    container_name: bbtracker-server
+    # restart: unless-stopped
+    restart: always
+    # image: bbtracker-server:1.0.0
     build:
-      context: api
-      target: production
+      context: ./server
+      # target: production
       dockerfile: Dockerfile
     ports:
-      - 3001:3001
+      - '3001:3001'
+    # working_dir: /server
+    volumes:
+      # - ./:/var/www
+      - ./server:/server
     networks:
       - shared-network
-    depends on:
+    depends_on:
       - postgres
 
+  # ReactJS client
   client:
-    container_name: bbtracker
-    restart: unless-stopped
-    image: bbtracker-client-prod:1.0.0
+    container_name: bbtracker-client
+    # stdin_open: true
+    # restart: unless-stopped
+    # image: bbtracker-client:1.0.0
     build:
-      context: client
-      target: production
+      context: ./client
+      # target: production
       dockerfile: Dockerfile
-    ports:
-      - 3000:3000
+    # ports:
+      # - '3000:3000'
+      # - '81:80'
+    volumes:
+      # - ./:/var/www
+      - ./client:/client
+    # working_dir: /client
     networks:
       - shared-network
-    depends on:
-      - api
+    # depends_on:
+      # - server
+      # - nginx
+
+  wsapi:
+    container_name: bbtracker-wsapi
+    restart: always
+    # image: bbtracker-wsapi:1.0.0
+    build:
+      context: ./wsapi
+      # target: production
+      dockerfile: Dockerfile
+    ports:
+      - '3003:3003'
+    # working_dir: /wsapi
+    volumes:
+      # - ./:/var/www
+      - ./wsapi:/wsapi
+    networks:
+      - shared-network
+    depends_on:
+      # - server
+      - postgres
+
+  # Nginx
+  nginx:
+    container_name: bbtracker-nginx
+    # image: nginx:alpine
+    # image: nginx:stable-alpine
+    image: nginx:latest
+    # restart: unless-stopped
+    restart: always
+    # deploy:
+      # replicas: 5
+      # resources:
+        # limits:
+          # cpus: "0.1"
+          # memory: 50M
+      # restart_policy:
+        # condition: on-failure
+    # tty: true
+    # command: ["nginx", "-g", "daemon off;"]
+    ports:
+      - '80:80'
+      - '443:443'
+    working_dir: /etc/nginx/
+    volumes:
+      # - ./kernel/sysctl.conf:/etc/sysctl.conf #no file
+      # - ./kernel/limits.conf:/etc/security/limits.conf
+      # - ./.kernel/tcp_fin_timeout:/proc/sys/net/ipv4/tcp_fin_timeout
+      # - ./.kernel/tcp_max_syn_backlog:/proc/sys/net/ipv4/tcp_max_syn_backlog
+      # - ./.kernel/ip_local_port_range:/proc/sys/net/ipv4/ip_local_port_range
+      # - ./.kernel/somaxconn:/proc/sys/net/core/somaxconn
+      # - ./.kernel/netdev_max_backlog:/proc/sys/net/core/netdev_max_backlog # no file
+      # - ./:/var/www
+      - ./.nginx/logs:/var/log/nginx
+      - ./client:/client
+      - ./wsapi:/wsapi # Test commenting this
+      # - ./nginx/sites-enabled/:/etc/nginx/conf.d/
+      - ./.nginx/conf.d:/etc/nginx/conf.d
+      - ./.nginx/iprestriction:/etc/nginx/iprestriction
+      - ./.nginx/custom-nginx.conf:/etc/nginx/custom-nginx.conf
+      - ./.nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./.nginx/certbot.conf:/etc/nginx/certbot.conf
+      - ./.nginx/sites-enabled/${NGINX_CONF}:/etc/nginx/sites-enabled/default.conf
+      # - ./.certbot/www:/var/www/certbot/:ro
+      - ./.certbot/www:/var/www/.certbot/www
+      # - ./.certbot/ssl:/etc/ssl/:ro # You can discard this one
+      - ./.certbot/ssl:/etc/ssl # You can discard this one
+      # - ./.certbot/conf:/etc/letsencrypt/:ro
+      - ./.certbot/conf:/etc/letsencrypt
+    # links:
+      # - app
+      # - mysql
+    networks:
+      - shared-network
+    depends_on:
+      # - server
+      - client
+      - wsapi
+      # - postgres
 
 networks:
-  shared-network
+  shared-network:
+    driver: bridge
