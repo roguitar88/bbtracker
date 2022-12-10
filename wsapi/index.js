@@ -17,7 +17,7 @@ const { Server } = require("socket.io");
 
 const io = new Server(server, {
   cors: {
-    origin: ["http://socketapi.test", "http://zuump.test", "http://academiadolacador.zuump.test"],
+    origin: ["http://socketapi.test", "http://zuump.test", "https://zuump.net", "http://zuump.net", "http://academiadolacador.zuump.test", "https://academiadolacador.zuump.net", "http://academiadolacador.zuump.net"],
     methods: ["GET", "POST"]
   }
 });
