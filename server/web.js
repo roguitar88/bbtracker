@@ -11,7 +11,7 @@ const Browser = require('nodecast-js');
 
 app.use(express.json());
 app.use(cors({
-    origin: ['http://localhost:3000', 'http://localhost', 'http://bbtracker.test:3000', 'http://bbtracker.test', 'https://bbtracker.tk:3000', 'https://bbtracker.tk', 'http://bbtracker.example:3000', 'http://bbtracker.example'],
+    origin: ['http://localhost:3000', 'http://localhost', 'http://bbtracker.test:3000', 'http://bbtracker.test', 'https://bbtracker.tk:3000', 'https://bbtracker.tk', 'http://bbtracker.tk', 'http://bbtracker.example:3000', 'http://bbtracker.example'],
     // origin: [baseUrl],
     methods: ['GET', 'POST'],
     credentials: true
