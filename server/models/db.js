@@ -45,10 +45,11 @@ require('dotenv').config();
 // console.log(process.env);
 // global.appEnvironment = 'development'; // Enable this for localhost
 // global.appEnvironment = process.env.NODE_ENV || 'development';
-global.appEnvironment = process.env.NODE_ENV;
+// global.appEnvironment = process.env.NODE_ENV;
 
 // DB connection (PostgreSQL)
-let pass = appEnvironment === 'production' ? 'gQB36gRAgVcY4aYw@' : '123147Poi@ROG';
+// let pass = appEnvironment === 'production' ? 'gQB36gRAgVcY4aYw@' : '123147Poi@ROG';
+let pass = process.env.DB_PASSWORD;
 
 const sequelize = new Sequelize('bbtracker', 'postgres', pass, {
     // host: 'localhost',
