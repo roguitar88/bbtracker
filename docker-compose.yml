@@ -143,7 +143,7 @@ services:
       - ./.nginx/custom-nginx.conf:/etc/nginx/custom-nginx.conf
       - ./.nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./.nginx/certbot.conf:/etc/nginx/certbot.conf
-      # - ./.nginx/sites-enabled/${NGINX_CONF}:/etc/nginx/sites-enabled/default.conf
+      - ./.nginx/sites-enabled/${NGINX_CONF}:/etc/nginx/sites-enabled/default.conf
       # - ./.certbot/www:/var/www/certbot/:ro
       - ./.certbot/www:/var/www/.certbot/www
       # - ./.certbot/ssl:/etc/ssl/:ro # You can discard this one
