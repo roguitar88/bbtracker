@@ -5,7 +5,8 @@ services:
   # PostgreSQL
   postgres:
     container_name: bbtracker-postgres
-    restart: always
+    # restart: always
+    restart: unless-stopped
     image: postgres:latest # postgres:11.5
     # build:
       # context: ./server/models
@@ -26,13 +27,13 @@ services:
       # - ./.postgres/db/bbtracker.sql:/docker-entrypoint-initdb.d/bbtracker.sql
       - ./.postgres/db:/docker-entrypoint-initdb.d/
       # - ./.postgres/db/bbtracker.pgsql:/bbtracker.pgsql
-    # command: '/usr/bin/psql -U postgres bbtracker < /docker-entrypoint-initdb.d/bbtracker.pgsql'
+    # command: psql -U postgres -d bbtracker -f /docker-entrypoint-initdb.d/bbtracker.pgsql
 
   # NodeJS server
   server:
     container_name: bbtracker-server
-    # restart: unless-stopped
-    restart: always
+    restart: unless-stopped
+    # restart: always
     # image: bbtracker-server:1.0.0
     build:
       context: ./server
@@ -44,6 +45,9 @@ services:
     volumes:
       # - ./:/var/www
       - ./server:/server
+    command: >
+      bash -c "npm install
+      && npm run start"
     networks:
       - shared-network
     depends_on:
@@ -66,6 +70,9 @@ services:
       # - ./:/var/www
       - ./client:/client
     # working_dir: /client
+    command: >
+      bash -c "npm install
+      && npm run build"
     networks:
       - shared-network
     # depends_on:
@@ -74,7 +81,8 @@ services:
 
   wsapi:
     container_name: bbtracker-wsapi
-    restart: always
+    # restart: always
+    restart: unless-stopped
     # image: bbtracker-wsapi:1.0.0
     build:
       context: ./wsapi
@@ -86,6 +94,9 @@ services:
     volumes:
       # - ./:/var/www
       - ./wsapi:/wsapi
+    command: >
+      bash -c "npm install
+      && npm run start"
     networks:
       - shared-network
     depends_on:
@@ -98,8 +109,8 @@ services:
     # image: nginx:alpine
     # image: nginx:stable-alpine
     image: nginx:latest
-    # restart: unless-stopped
-    restart: always
+    restart: unless-stopped
+    # restart: always
     # deploy:
       # replicas: 5
       # resources:

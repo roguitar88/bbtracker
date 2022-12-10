@@ -1,6 +1,7 @@
 # FROM node:16 AS Production
 # FROM node:16
-FROM node:16.7.0-slim
+# FROM node:16.7.0-slim
+FROM node:16.10.0
 
 # ENV NODE_ENV=production
 # Install system dependencies
@@ -17,15 +18,15 @@ FROM node:16.7.0-slim
 # WORKDIR /var/www/server
 WORKDIR /server
 
-COPY package.json ./
+# COPY package.json ./
 # COPY package-lock.json ./
 
-COPY ./ ./
+# COPY ./ ./
 
-RUN npm install
+# RUN npm install
 # RUN npm run build
 # RUN node index.js
 
 # CMD ["sh", "-c", "npm run start"]
-CMD ["npm", "run", "start"]
+# CMD ["npm", "run", "start"]
 # npm devStart

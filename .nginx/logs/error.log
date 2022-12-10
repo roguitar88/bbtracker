@@ -1,2 +1,0 @@
-2022/12/08 22:48:02 [error] 30#30: *8 rewrite or internal redirection cycle while internally redirecting to "404", client: 172.18.0.1, server: bbtracker.example, request: "GET /signin HTTP/1.1", host: "bbtracker.example"
-2022/12/09 01:15:14 [error] 28#28: *1 rewrite or internal redirection cycle while internally redirecting to "404", client: 172.18.0.1, server: bbtracker.example, request: "GET /signin HTTP/1.1", host: "bbtracker.example"
