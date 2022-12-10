@@ -18,7 +18,7 @@ const web = require('./web');
 
 // https://stackoverflow.com/questions/11744975/enabling-https-on-express-js
 // console.log('O que houve');
-if (appEnvironment === 'production') {
+if (appEnvironment === 'production2') {
     const fs = require('fs');
     const https = require('https');
 
