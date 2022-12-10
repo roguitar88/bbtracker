@@ -45,9 +45,9 @@ services:
     volumes:
       # - ./:/var/www
       - ./server:/server
-      - .env:/server/.env
-      - .env.development:/server/.env.development
-      - .env.production:/server/.env.production
+      # - .env:/server/.env
+      # - .env.development:/server/.env.development
+      # - .env.production:/server/.env.production
     command: >
       bash -c "npm install
       && npm run start"
@@ -97,9 +97,9 @@ services:
     volumes:
       # - ./:/var/www
       - ./wsapi:/wsapi
-      - .env:/wsapi/.env
-      - .env.development:/wsapi/.env.development
-      - .env.production:/wsapi/.env.production
+      # - .env:/wsapi/.env
+      # - .env.development:/wsapi/.env.development
+      # - .env.production:/wsapi/.env.production
     command: >
       bash -c "npm install
       && npm run start"
