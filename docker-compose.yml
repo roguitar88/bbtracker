@@ -45,6 +45,9 @@ services:
     volumes:
       # - ./:/var/www
       - ./server:/server
+      - .env:/server/.env
+      - .env.development:/server/.env.development
+      - .env.production:/server/.env.production
     command: >
       bash -c "npm install
       && npm run start"
@@ -94,6 +97,9 @@ services:
     volumes:
       # - ./:/var/www
       - ./wsapi:/wsapi
+      - .env:/wsapi/.env
+      - .env.development:/wsapi/.env.development
+      - .env.production:/wsapi/.env.production
     command: >
       bash -c "npm install
       && npm run start"
@@ -146,7 +152,7 @@ services:
       # - ./.nginx/sites-enabled/${NGINX_CONF}:/etc/nginx/sites-enabled/default.conf
       - ./.nginx/sites-enabled:/etc/nginx/sites-enabled
       # - ./.certbot/www:/var/www/certbot/:ro
-      - ./.certbot/www:/var/www/.certbot/www
+      - ./.certbot/www:/certbot/www
       # - ./.certbot/ssl:/etc/ssl/:ro # You can discard this one
       - ./.certbot/ssl:/etc/ssl # You can discard this one
       # - ./.certbot/conf:/etc/letsencrypt/:ro
