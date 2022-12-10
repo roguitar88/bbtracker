@@ -50,6 +50,7 @@ require('dotenv').config();
 // DB connection (PostgreSQL)
 // let pass = appEnvironment === 'production' ? 'gQB36gRAgVcY4aYw@' : '123147Poi@ROG';
 let pass = process.env.DB_PASSWORD;
+// something
 
 const sequelize = new Sequelize('bbtracker', 'postgres', pass, {
     // host: 'localhost',
