@@ -18,17 +18,17 @@ FROM node:16.10.0
 
 # Clear cache
 # RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-# RUN useradd -u 1001 ubuntu
+RUN useradd -u 1001 ubuntu
 
-USER node
+USER ubuntu
 
 # WORKDIR /var/www/server
 WORKDIR /server
 
-COPY package.json ./
+COPY --chown=ubuntu:ubuntu --from=build-image package.json ./
 # COPY package-lock.json ./
 
-COPY ./ ./
+COPY --chown=ubuntu:ubuntu --from=build-image ./ ./
 
 # RUN useradd -u 1001 ubuntu
 

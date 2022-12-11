@@ -8,16 +8,17 @@ FROM node:16.10.0
 # ARG uid=1001
 
 # ENV NODE_ENV=production
+RUN useradd -u 1001 ubuntu
 
-USER node
+USER ubuntu
 
 # WORKDIR /var/www/wsapi
 WORKDIR /wsapi
 
-COPY package.json ./
+COPY --chown=ubuntu:ubuntu --from=build-image package.json ./
 # COPY package-lock.json ./
 
-COPY ./ ./
+COPY --chown=ubuntu:ubuntu --from=build-image ./ ./
 
 # RUN useradd -u 1001 ubuntu
 
