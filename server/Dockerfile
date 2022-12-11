@@ -23,7 +23,8 @@ WORKDIR /server
 
 # COPY ./ ./
 
-USER 1001:1001
+RUN useradd -u 1001 ubuntu
+USER ubuntu
 
 # RUN npm install
 # RUN npm run build
