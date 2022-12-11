@@ -37,9 +37,9 @@ USER root
 
 RUN chmod a+w ./ -R
 
-RUN adduser ubuntu \
-    usermod -aG ubuntu \
-    su - ubuntu
+# RUN adduser ubuntu \
+    # usermod -aG ubuntu \
+    # su - ubuntu
 
 USER ubuntu
 
