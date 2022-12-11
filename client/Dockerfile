@@ -17,9 +17,11 @@ WORKDIR /client
 
 # COPY ./ ./
 
+RUN useradd -u $uid $user
+
 USER $user
-RUN useradd -u $uid $user \
-    chown -Rf $user:$user /wsapi
+
+RUN chown -Rf $user:$user /wsapi
 
 # RUN npm install
 # RUN npm run build
