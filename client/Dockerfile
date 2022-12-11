@@ -13,6 +13,8 @@ WORKDIR /client
 
 # COPY ./ ./
 
+USER ubuntu
+
 # RUN npm install
 # RUN npm run build
 

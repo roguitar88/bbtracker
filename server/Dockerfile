@@ -23,6 +23,8 @@ WORKDIR /server
 
 # COPY ./ ./
 
+USER ubuntu
+
 # RUN npm install
 # RUN npm run build
 # RUN node index.js

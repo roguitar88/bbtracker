@@ -11,6 +11,7 @@ services:
     # build:
       # context: ./server/models
       # dockerfile: Dockerfile
+    # user: ubuntu
     environment:
       # - POSTGRES_PASSWORD=${DB_PASSWORD}
       # - POSTGRES_DB=${DB_DATABASE}
@@ -119,6 +120,7 @@ services:
     image: nginx:latest
     restart: unless-stopped
     # restart: always
+    # user: ubuntu
     # deploy:
       # replicas: 5
       # resources:
@@ -145,7 +147,7 @@ services:
       - ./.nginx/logs:/var/log/nginx
       - ./client:/client
       - ./wsapi:/wsapi # Test commenting this
-      - ./server:/server
+      # - ./server:/server
       # - ./nginx/sites-enabled/:/etc/nginx/conf.d/
       - ./.nginx/conf.d:/etc/nginx/conf.d
       - ./.nginx/iprestriction:/etc/nginx/iprestriction
@@ -155,19 +157,19 @@ services:
       # - ./.nginx/sites-enabled/${NGINX_CONF}:/etc/nginx/sites-enabled/default.conf
       - ./.nginx/sites-enabled:/etc/nginx/sites-enabled
       # - ./.certbot/www:/var/www/certbot/:ro
-      - ./.certbot/www:/certbot/www:ro
-      - ./.certbot/ssl:/etc/ssl/:ro # You can discard this one
-      # - ./.certbot/ssl:/etc/ssl # You can discard this one
-      - ./.certbot/conf:/etc/letsencrypt/:ro
-      # - ./.certbot/conf:/etc/letsencrypt
+      - ./.certbot/www:/certbot/www
+      # - ./.certbot/ssl:/etc/ssl/:ro # You can discard this one
+      - ./.certbot/ssl:/etc/ssl # You can discard this one
+      # - ./.certbot/conf:/etc/letsencrypt/:ro
+      - ./.certbot/conf:/etc/letsencrypt
     # links:
       # - app
       # - mysql
-    # command: chown -Rf ubuntu:ubuntu /etc/letsencrypt/live/*
+    # command: chown -Rf www-data:www-data /etc/letsencrypt/live/*
     networks:
       - shared-network
     depends_on:
-      - server
+      # - server
       - client
       - wsapi
       # - postgres
