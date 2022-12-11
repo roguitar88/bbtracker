@@ -21,8 +21,8 @@ RUN useradd -u $uid $user
 
 USER $user
 
-RUN usermod -G www-data, root $user \
-    chown -Rf $user:$user /client
+# RUN usermod -G www-data, root $user \
+RUN chown -Rf $user:$user /client
 
 # RUN npm install
 # RUN npm run build
