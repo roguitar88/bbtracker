@@ -32,7 +32,7 @@ RUN useradd -u 1001 ubuntu
 USER ubuntu
 
 # RUN usermod -G www-data, root ubuntu \
-RUN chown -Rf ubuntu:ubuntu /server
+RUN chown -Rf 1001:1001 /server
 
 # RUN npm install
 # RUN npm run build

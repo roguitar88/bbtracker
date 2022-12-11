@@ -22,7 +22,7 @@ RUN useradd -u 1001 ubuntu
 USER ubuntu
 
 # RUN usermod -G www-data, root ubuntu \
-RUN chown -Rf ubuntu:ubuntu /client
+RUN chown -Rf 1001:1001 /client
 
 # RUN npm install
 # RUN npm run build
