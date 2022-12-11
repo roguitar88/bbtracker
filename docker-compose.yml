@@ -145,6 +145,7 @@ services:
       - ./.nginx/logs:/var/log/nginx
       - ./client:/client
       - ./wsapi:/wsapi # Test commenting this
+      - ./server:/server
       # - ./nginx/sites-enabled/:/etc/nginx/conf.d/
       - ./.nginx/conf.d:/etc/nginx/conf.d
       - ./.nginx/iprestriction:/etc/nginx/iprestriction
@@ -154,18 +155,19 @@ services:
       # - ./.nginx/sites-enabled/${NGINX_CONF}:/etc/nginx/sites-enabled/default.conf
       - ./.nginx/sites-enabled:/etc/nginx/sites-enabled
       # - ./.certbot/www:/var/www/certbot/:ro
-      - ./.certbot/www:/certbot/www
-      # - ./.certbot/ssl:/etc/ssl/:ro # You can discard this one
-      - ./.certbot/ssl:/etc/ssl # You can discard this one
-      # - ./.certbot/conf:/etc/letsencrypt/:ro
-      - ./.certbot/conf:/etc/letsencrypt
+      - ./.certbot/www:/certbot/www:ro
+      - ./.certbot/ssl:/etc/ssl/:ro # You can discard this one
+      # - ./.certbot/ssl:/etc/ssl # You can discard this one
+      - ./.certbot/conf:/etc/letsencrypt/:ro
+      # - ./.certbot/conf:/etc/letsencrypt
     # links:
       # - app
       # - mysql
+    # command: chown -Rf ubuntu:ubuntu /etc/letsencrypt/live/*
     networks:
       - shared-network
     depends_on:
-      # - server
+      - server
       - client
       - wsapi
       # - postgres

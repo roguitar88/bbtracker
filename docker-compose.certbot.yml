@@ -8,12 +8,11 @@ services:
         image: certbot/certbot:arm32v6-latest
         volumes:
             # - ./.certbot/www:/var/www/.certbot/www:rw
-            - ./.certbot/www:/certbot/www
-            - ./.certbot/conf:/etc/letsencrypt
+            - ./.certbot/www:/certbot/www:rw
+            - ./.certbot/conf:/etc/letsencrypt:rw
         # command: certonly --webroot -w /certbot/www --non-interactive --email rogeriobsoares5@gmail.com -d bbtracker.tk -d www.bbtracker.tk --agree-tos
-        command: >
-            bash -c "certonly --webroot -w /certbot/www --non-interactive --email rogeriobsoares5@gmail.com -d websocket.bbtracker.tk --agree-tos
-            && chown -Rf www-data:www-data /etc/letsencrypt/live"
+        command: certonly --webroot -w /certbot/www --non-interactive --email rogeriobsoares5@gmail.com -d websocket.bbtracker.tk --agree-tos
+        # && chown -Rf www-data:www-data /etc/letsencrypt/live"
         # && ln -s /etc/letsencrypt /certs*"
         # --non-interactive or --force-interactive
         # entrypoint: chown -Rf ubuntu:ubuntu /etc/letsencrypt/*
