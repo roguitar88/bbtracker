@@ -35,6 +35,7 @@ WORKDIR /server
 
 USER root
 
+RUN useradd -u 1001 ubuntu
 RUN chmod a+w ./ -R
 
 # RUN adduser ubuntu \
