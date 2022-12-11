@@ -23,9 +23,9 @@ WORKDIR /client
 
 # RUN chown -Rf ubuntu:ubuntu /client
 
-USER root
+# USER root
 
-RUN useradd -u 1001 ubuntu
+# RUN useradd -u 1001 ubuntu
 # RUN chmod a+w ./ -R
 RUN chown -Rf 1001:1001 ./
 
@@ -33,7 +33,7 @@ RUN chown -Rf 1001:1001 ./
     # usermod -aG ubuntu \
     # su - ubuntu
 
-USER ubuntu
+# USER ubuntu
 
 # RUN npm install
 # RUN npm run build
