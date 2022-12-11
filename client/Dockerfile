@@ -4,8 +4,8 @@
 FROM node:16.10.0
 
 # Arguments
-ARG user=ubuntu
-ARG uid=1001
+# ARG user=ubuntu
+# ARG uid=1001
 
 # ENV NODE_ENV=production
 
@@ -17,12 +17,12 @@ WORKDIR /client
 
 # COPY ./ ./
 
-RUN useradd -u $uid $user
+RUN useradd -u 1001 ubuntu
 
-USER $user
+USER ubuntu
 
-# RUN usermod -G www-data, root $user \
-RUN chown -Rf $user:$user /client
+# RUN usermod -G www-data, root ubuntu \
+RUN chown -Rf ubuntu:ubuntu /client
 
 # RUN npm install
 # RUN npm run build
