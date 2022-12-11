@@ -5,7 +5,7 @@ FROM node:16.10.0
 
 # Arguments
 ARG user=ubuntu
-ARG uid=1000
+ARG uid=1001
 
 # ENV NODE_ENV=production
 
@@ -18,7 +18,7 @@ WORKDIR /client
 # COPY ./ ./
 
 USER $user
-RUN useradd -u 1001 $user \
+RUN useradd -u $uid $user \
     chown -Rf $user:$user /wsapi
 
 # RUN npm install
