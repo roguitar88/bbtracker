@@ -4,7 +4,7 @@ const app = express();
 const cors = require('cors');
 app.use(express.json());
 app.use(cors({
-    origin: ['http://localhost', 'http://localhost:3000', 'http://bbtracker.test:3000', 'http://bbtracker.test', 'https://bbtracker.tk:3000', 'https://bbtracker.tk', 'http://socketapi.test'],
+    origin: [...],
     // origin: [baseUrl],
     methods: ['GET', 'POST'],
     credentials: true
@@ -17,7 +17,9 @@ const { Server } = require("socket.io");
 
 const io = new Server(server, {
   cors: {
-    origin: ["http://socketapi.test", "http://zuump.test", "https://zuump.net", "http://zuump.net", "http://academiadolacador.zuump.test", "https://academiadolacador.zuump.net", "http://academiadolacador.zuump.net"],
+    origin: [
+      "http://zuump.test", "http://academiadolacador.zuump.test",
+      "http://zuump.net", "https://zuump.net", "http://academiadolacador.zuump.net", "https://academiadolacador.zuump.net"],
     methods: ["GET", "POST"]
   }
 });
@@ -135,8 +137,8 @@ if (appEnvironment === 'production') {
   const fs = require('fs');
   const https = require('https');
 
-  const privateKey  = fs.readFileSync('/etc/letsencrypt/live/bbtracker.tk/privkey.pem');
-  const certificate = fs.readFileSync('/etc/letsencrypt/live/bbtracker.tk/fullchain.pem');
+  const privateKey  = fs.readFileSync('/etc/letsencrypt/live/websocket.bbtracker.tk/privkey.pem');
+  const certificate = fs.readFileSync('/etc/letsencrypt/live/websocket.bbtracker.tk/fullchain.pem');
   const credentials = {key: privateKey, cert: certificate};
 
   https.createServer(credentials, server).listen( 3003, () => {

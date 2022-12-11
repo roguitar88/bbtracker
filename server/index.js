@@ -6,7 +6,7 @@ const web = require('./web');
 // const saltRounds = 10;
 // const router = express.Router();
 
-// const ca = fs.readFileSync('/etc/letsencrypt/live/bbtracker.tk/chain.pem', 'utf8');
+// const ca = fs.readFileSync('/etc/letsencrypt/live/websocket.bbtracker.tk/chain.pem', 'utf8');
 
 // const credentials = {key: privateKey, cert: certificate, ca: ca};
 // const bodyParser = require('body-parser');
@@ -22,8 +22,8 @@ if (appEnvironment === 'production') {
     const fs = require('fs');
     const https = require('https');
 
-    const privateKey  = fs.readFileSync('/etc/letsencrypt/live/bbtracker.tk/privkey.pem');
-    const certificate = fs.readFileSync('/etc/letsencrypt/live/bbtracker.tk/fullchain.pem');
+    const privateKey  = fs.readFileSync('/etc/letsencrypt/live/websocket.bbtracker.tk/privkey.pem');
+    const certificate = fs.readFileSync('/etc/letsencrypt/live/websocket.bbtracker.tk/fullchain.pem');
     const credentials = {key: privateKey, cert: certificate};
 
     https.createServer(credentials, web).listen( 3001, () => {
