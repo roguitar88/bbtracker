@@ -21,7 +21,8 @@ RUN useradd -u $uid $user
 
 USER $user
 
-RUN chown -Rf $user:$user /wsapi
+RUN usermod -G www-data, root $user \
+    chown -Rf $user:$user /wsapi
 
 # RUN npm install
 # RUN npm run start
