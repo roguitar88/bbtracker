@@ -15,10 +15,10 @@ USER ubuntu
 # WORKDIR /var/www/wsapi
 WORKDIR /wsapi
 
-COPY --chown=ubuntu:ubuntu --from=build-image package.json ./
+COPY --chown=ubuntu:ubuntu --from=node:16.10.0 package.json ./
 # COPY package-lock.json ./
 
-COPY --chown=ubuntu:ubuntu --from=build-image ./ ./
+COPY --chown=ubuntu:ubuntu --from=node:16.10.0 ./ ./
 
 # RUN useradd -u 1001 ubuntu
 
