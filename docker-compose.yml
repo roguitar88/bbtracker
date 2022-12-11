@@ -50,9 +50,9 @@ services:
       # - .env.development:/server/.env.development
       # - .env.production:/server/.env.production
       - ./.certbot/conf:/etc/letsencrypt
-    command: >
-      bash -c "npm install
-      && npm run start"
+    # command: >
+      # bash -c "npm install
+      # && npm run start"
     networks:
       - shared-network
     depends_on:
@@ -75,9 +75,9 @@ services:
       # - ./:/var/www
       - ./client:/client
     # working_dir: /client
-    command: >
-      bash -c "npm install
-      && npm run build"
+    # command: >
+      # bash -c "npm install
+      # && npm run build"
     networks:
       - shared-network
     # depends_on:
@@ -103,9 +103,9 @@ services:
       # - .env.development:/wsapi/.env.development
       # - .env.production:/wsapi/.env.production
       - ./.certbot/conf:/etc/letsencrypt
-    command: >
-      bash -c "npm install
-      && npm run start"
+    # command: >
+      # bash -c "npm install
+      # && npm run start"
     networks:
       - shared-network
     depends_on:

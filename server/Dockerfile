@@ -18,14 +18,17 @@ FROM node:16.10.0
 
 # Clear cache
 # RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+# RUN useradd -u 1001 ubuntu
+
+USER node
 
 # WORKDIR /var/www/server
 WORKDIR /server
 
-# COPY package.json ./
+COPY package.json ./
 # COPY package-lock.json ./
 
-# COPY ./ ./
+COPY ./ ./
 
 # RUN useradd -u 1001 ubuntu
 
@@ -37,7 +40,7 @@ WORKDIR /server
 
 # RUN useradd -u 1001 ubuntu
 # RUN chmod a+w ./ -R
-RUN chown -Rf 1001:1001 ./
+# RUN chown -Rf 1001:1001 ./
 
 # RUN adduser ubuntu \
     # usermod -aG ubuntu \
@@ -45,10 +48,10 @@ RUN chown -Rf 1001:1001 ./
 
 # USER ubuntu
 
-# RUN npm install
+RUN npm install
 # RUN npm run build
 # RUN node index.js
 
 # CMD ["sh", "-c", "npm run start"]
-# CMD ["npm", "run", "start"]
+CMD ["npm", "run", "start"]
 # npm devStart
