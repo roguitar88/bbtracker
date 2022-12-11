@@ -17,9 +17,10 @@ WORKDIR /wsapi
 
 # COPY ./ ./
 
-RUN useradd -u 1001 $user \
-    chown -R $user:$user /wsapi
 USER $user
+RUN useradd -u 1001 $user \
+    chown -Rf $user:$user /wsapi
+
 
 # RUN npm install
 # RUN npm run start
