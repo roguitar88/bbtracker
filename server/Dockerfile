@@ -3,6 +3,10 @@
 # FROM node:16.7.0-slim
 FROM node:16.10.0
 
+# Arguments
+ARG user=ubuntu
+ARG uid=1000
+
 # ENV NODE_ENV=production
 # Install system dependencies
 # RUN apt-get update && apt-get install -y \
@@ -23,9 +27,9 @@ WORKDIR /server
 
 # COPY ./ ./
 
-RUN useradd -u 1001 ubuntu \
-    chown -R $user:$user /server
-USER ubuntu
+RUN useradd -u 1001 $user \
+    chown -R $user:$user /wsapi
+USER $user
 
 # RUN npm install
 # RUN npm run build

@@ -3,6 +3,10 @@
 # FROM node:16.7.0-slim
 FROM node:16.10.0
 
+# Arguments
+ARG user=ubuntu
+ARG uid=1000
+
 # ENV NODE_ENV=production
 
 # WORKDIR /var/www/client
@@ -13,9 +17,9 @@ WORKDIR /client
 
 # COPY ./ ./
 
-RUN useradd -u 1001 ubuntu \
-    chown -R $user:$user /client
-USER ubuntu
+RUN useradd -u 1001 $user \
+    chown -R $user:$user /wsapi
+USER $user
 
 # RUN npm install
 # RUN npm run build
