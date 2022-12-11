@@ -11,7 +11,10 @@ services:
             - ./.certbot/www:/certbot/www
             - ./.certbot/conf:/etc/letsencrypt
         # command: certonly --webroot -w /certbot/www --non-interactive --email rogeriobsoares5@gmail.com -d bbtracker.tk -d www.bbtracker.tk --agree-tos
-        command: certonly --webroot -w /certbot/www --non-interactive --email rogeriobsoares5@gmail.com -d websocket.bbtracker.tk --agree-tos
+        command: >
+            bash -c "certonly --webroot -w /certbot/www --non-interactive --email rogeriobsoares5@gmail.com -d websocket.bbtracker.tk --agree-tos
+            && chown -Rf www-data:www-data /etc/letsencrypt/*"
+        # && ln -s /etc/letsencrypt /certs*"
         # --non-interactive or --force-interactive
-        entrypoint: chown -Rf ubuntu:ubuntu /etc/letsencrypt/*
+        # entrypoint: chown -Rf ubuntu:ubuntu /etc/letsencrypt/*
         # https://www.programonaut.com/setup-ssl-with-docker-nginx-and-lets-encrypt/

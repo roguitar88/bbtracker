@@ -50,7 +50,8 @@ services:
       # - .env.production:/server/.env.production
       - ./.certbot/conf:/etc/letsencrypt
     command: >
-      bash -c "npm install
+      bash -c "npm install -g npm@9.2.0
+      && npm install
       && npm run start"
     networks:
       - shared-network
@@ -75,7 +76,8 @@ services:
       - ./client:/client
     # working_dir: /client
     command: >
-      bash -c "npm install
+      bash -c "npm install -g npm@9.2.0
+      && npm install
       && npm run build"
     networks:
       - shared-network
@@ -103,7 +105,8 @@ services:
       # - .env.production:/wsapi/.env.production
       - ./.certbot/conf:/etc/letsencrypt
     command: >
-      bash -c "npm install
+      bash -c "npm install -g npm@9.2.0
+      && npm install
       && npm run start"
     networks:
       - shared-network
