@@ -15,10 +15,10 @@ USER ubuntu
 # WORKDIR /var/www/client
 WORKDIR /client
 
-COPY --chown=ubuntu:ubuntu --from=node:16.10.0 package.json ./
+COPY --chown=ubuntu:ubuntu package.json ./
 # COPY package-lock.json ./
 
-COPY --chown=ubuntu:ubuntu --from=node:16.10.0 ./ ./
+COPY --chown=ubuntu:ubuntu ./ ./
 
 # RUN useradd -u 1001 ubuntu
 
