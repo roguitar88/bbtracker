@@ -27,12 +27,21 @@ WORKDIR /server
 
 # COPY ./ ./
 
-RUN useradd -u 1001 ubuntu
+# RUN useradd -u 1001 ubuntu
+
+# USER ubuntu
+
+# RUN chown -Rf ubuntu:ubuntu /server
+
+USER root
+
+RUN chmod a+w ./ -R
+
+RUN adduser ubuntu \
+    usermod -aG ubuntu \
+    su - ubuntu
 
 USER ubuntu
-
-# RUN usermod -G www-data, root ubuntu \
-RUN chown -Rf 1001:1001 /server
 
 # RUN npm install
 # RUN npm run build
