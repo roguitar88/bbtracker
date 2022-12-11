@@ -13,7 +13,8 @@ WORKDIR /client
 
 # COPY ./ ./
 
-RUN useradd -u 1001 ubuntu
+RUN useradd -u 1001 ubuntu \
+    chown -R $user:$user /client
 USER ubuntu
 
 # RUN npm install
