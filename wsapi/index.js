@@ -13,6 +13,7 @@ app.use(cors({
 // const http = require('http');
 const http = require('https');
 // const server = http.createServer(app);
+const fs = require("fs");
 const server = http.createServer({
   key: fs.readFileSync('/etc/letsencrypt/live/websocket.bbtracker.tk/privkey.pem'),
   cert: fs.readFileSync('/etc/letsencrypt/live/websocket.bbtracker.tk/fullchain.pem')
@@ -136,25 +137,6 @@ io.on('connection', (socket) => {
     });
   });
 });
-
-/*
-if (appEnvironment === 'production') {
-  const fs = require('fs');
-  const https = require('https');
-
-  const privateKey  = fs.readFileSync('/etc/letsencrypt/live/websocket.bbtracker.tk/privkey.pem');
-  const certificate = fs.readFileSync('/etc/letsencrypt/live/websocket.bbtracker.tk/fullchain.pem');
-  const credentials = {key: privateKey, cert: certificate};
-
-  https.createServer(credentials, server).listen( 3003, () => {
-      console.log('Server is running on https!');
-  });
-} else {
-  server.listen(3003, () => {
-      console.log('Server is running!');
-  });
-}
-*/
 
 /*
 if (appEnvironment === 'production') {
