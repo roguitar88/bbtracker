@@ -15,10 +15,16 @@ global.appEnvironment = process.env.NODE_ENV;
 const http = appEnvironment === 'production' ? require('https'): require('http');
 // const server = http.createServer(app);
 const fs = require("fs");
+/*
 const server = appEnvironment === 'production' ? http.createServer({
   key: fs.readFileSync('/etc/letsencrypt/live/websocket.bbtracker.tk/privkey.pem'),
   cert: fs.readFileSync('/etc/letsencrypt/live/websocket.bbtracker.tk/fullchain.pem')
 }) : http.createServer(app);
+*/
+const server = http.createServer({
+  key: fs.readFileSync('/etc/letsencrypt/live/websocket.bbtracker.tk/privkey.pem'),
+  cert: fs.readFileSync('/etc/letsencrypt/live/websocket.bbtracker.tk/fullchain.pem')
+});
 const { Server } = require("socket.io");
 // const io = new Server(server);
 
