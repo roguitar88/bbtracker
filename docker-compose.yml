@@ -77,9 +77,11 @@ services:
       # - ./:/var/www
       - ./client:/client
     working_dir: /client
-    # command: >
-      # bash -c "npm install
-      # && npm run build"
+    command: >
+      bash -c "npm config set unsafe-perm true
+      && npm install -g npm
+      && npm install
+      && npm run build"
     networks:
       - shared-network
     # depends_on:
