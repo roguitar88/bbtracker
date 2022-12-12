@@ -20,14 +20,16 @@ FROM node:16.10.0
 # RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 RUN useradd -u 1001 ubuntu
 
-USER ubuntu
-
 # WORKDIR /var/www/server
 WORKDIR /server
 
 # COPY --chown=ubuntu:ubuntu package.json ./
 COPY package.json ./
 # COPY package-lock.json ./
+
+RUN npm config set unsafe-perm true
+
+RUN npm install --force
 
 # COPY --chown=ubuntu:ubuntu ./ ./
 COPY ./ ./
@@ -37,6 +39,7 @@ COPY ./ ./
 # USER ubuntu
 
 # RUN chown -Rf ubuntu:ubuntu /server
+RUN chown -R ubuntu /node_modules
 
 # USER root
 
@@ -48,9 +51,9 @@ COPY ./ ./
     # usermod -aG ubuntu \
     # su - ubuntu
 
-# USER ubuntu
+USER ubuntu
 
-RUN npm install
+# RUN npm install
 # RUN npm run build
 # RUN node index.js
 
