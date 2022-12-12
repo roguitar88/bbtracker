@@ -10,7 +10,9 @@ app.use(cors({
     credentials: true
 }));
 */
-const http = require('http');
+// const http = require('http');
+const http = require('https');
+// const server = http.createServer(app);
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 // const io = new Server(server);
