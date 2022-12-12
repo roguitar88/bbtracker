@@ -35,14 +35,14 @@ services:
     container_name: bbtracker-server
     restart: unless-stopped
     # restart: always
-    # image: bbtracker-server:1.0.0
-    build:
-      context: ./server
+    image: node:18.12.0
+    # build:
+      # context: ./server
       # target: production
-      dockerfile: Dockerfile
+      # dockerfile: Dockerfile
     ports:
       - '3001:3001'
-    # working_dir: /server
+    working_dir: /server
     volumes:
       # - ./:/var/www
       - ./server:/server
@@ -50,9 +50,11 @@ services:
       # - .env.development:/server/.env.development
       # - .env.production:/server/.env.production
       - ./.certbot/conf:/etc/letsencrypt
-    # command: >
-      # bash -c "npm install
-      # && npm run start"
+    command: >
+      bash -c "npm config set unsafe-perm true
+      && npm install -g npm
+      && npm install
+      && npm run start"
     networks:
       - shared-network
     depends_on:
@@ -63,18 +65,18 @@ services:
     container_name: bbtracker-client
     # stdin_open: true
     # restart: unless-stopped
-    # image: bbtracker-client:1.0.0
-    build:
-      context: ./client
+    image: node:18.12.0
+    # build:
+      # context: ./client
       # target: production
-      dockerfile: Dockerfile
+      # dockerfile: Dockerfile
     # ports:
       # - '3000:3000'
       # - '81:80'
     volumes:
       # - ./:/var/www
       - ./client:/client
-    # working_dir: /client
+    working_dir: /client
     # command: >
       # bash -c "npm install
       # && npm run build"
@@ -88,14 +90,14 @@ services:
     container_name: bbtracker-wsapi
     # restart: always
     restart: unless-stopped
-    # image: bbtracker-wsapi:1.0.0
-    build:
-      context: ./wsapi
+    image: node:18.12.0
+    # build:
+      # context: ./wsapi
       # target: production
-      dockerfile: Dockerfile
+      # dockerfile: Dockerfile
     ports:
       - '3003:3003'
-    # working_dir: /wsapi
+    working_dir: /wsapi
     volumes:
       # - ./:/var/www
       - ./wsapi:/wsapi
@@ -103,9 +105,11 @@ services:
       # - .env.development:/wsapi/.env.development
       # - .env.production:/wsapi/.env.production
       - ./.certbot/conf:/etc/letsencrypt
-    # command: >
-      # bash -c "npm install
-      # && npm run start"
+    command: >
+      bash -c "npm config set unsafe-perm true
+      && npm install -g npm
+      && npm install
+      && npm run start"
     networks:
       - shared-network
     depends_on:

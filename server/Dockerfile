@@ -18,7 +18,7 @@ FROM node:18.12.0
 
 # Clear cache
 # RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-RUN useradd -u 1001 ubuntu
+# RUN useradd -u 1001 ubuntu
 
 # WORKDIR /var/www/server
 WORKDIR /server
@@ -27,13 +27,13 @@ WORKDIR /server
 # COPY package.json ./
 # COPY package-lock.json ./
 
-COPY ./ ./server
+# COPY ./ ./
 
-RUN npm config set unsafe-perm true
+# RUN npm config set unsafe-perm true
 
-RUN npm install -g npm
+# RUN npm install -g npm
 
-RUN npm install
+# RUN npm install
 
 # COPY --chown=ubuntu:ubuntu ./ ./
 
@@ -42,7 +42,7 @@ RUN npm install
 # USER ubuntu
 
 # RUN chown -Rf ubuntu:ubuntu /server
-RUN chown -R ubuntu /server/node_modules
+# RUN chown -R ubuntu /server/node_modules
 
 # USER root
 
@@ -54,12 +54,12 @@ RUN chown -R ubuntu /server/node_modules
     # usermod -aG ubuntu \
     # su - ubuntu
 
-USER ubuntu
+# USER ubuntu
 
 # RUN npm install
 # RUN npm run build
 # RUN node index.js
 
 # CMD ["sh", "-c", "npm run start"]
-CMD ["npm", "run", "start"]
+# CMD ["npm", "run", "start"]
 # npm devStart

@@ -8,7 +8,7 @@ FROM node:18.12.0
 # ARG uid=1001
 
 # ENV NODE_ENV=production
-RUN useradd -u 1001 ubuntu
+# RUN useradd -u 1001 ubuntu
 
 # WORKDIR /var/www/client
 WORKDIR /client
@@ -17,13 +17,13 @@ WORKDIR /client
 # COPY package.json ./
 # COPY package-lock.json ./
 
-COPY ./ ./client
+# COPY ./ ./
 
-RUN npm config set unsafe-perm true
+# RUN npm config set unsafe-perm true
 
-RUN npm install -g npm
+# RUN npm install -g npm
 
-RUN npm install
+# RUN npm install
 
 # COPY --chown=ubuntu:ubuntu ./ ./
 
@@ -32,7 +32,7 @@ RUN npm install
 # USER ubuntu
 
 # RUN chown -Rf ubuntu:ubuntu /client
-RUN chown -R ubuntu /client/node_modules
+# RUN chown -R ubuntu /client/node_modules
 
 # USER root
 
@@ -44,11 +44,11 @@ RUN chown -R ubuntu /client/node_modules
     # usermod -aG ubuntu \
     # su - ubuntu
 
-USER ubuntu
+# USER ubuntu
 
 # RUN npm install
 # RUN npm run build
 
 # CMD ["sh", "-c", "npm run build"]
-CMD ["npm", "run", "build"]
+# CMD ["npm", "run", "build"]
 # yarn build
