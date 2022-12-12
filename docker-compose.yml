@@ -52,11 +52,7 @@ services:
       # - .env.production:/server/.env.production
       - ./.certbot/conf:/etc/letsencrypt
     command: >
-      bash -c "mkdir ~/.npm-global
-      && npm config set prefix '~/.npm-global'
-      && export PATH=~/.npm-global/bin:$PATH
-      && source ~/.profile
-      && npm install -g npm
+      bash -c "npm install -g npm
       && npm install
       && npm run start"
     networks:
@@ -84,11 +80,7 @@ services:
     working_dir: /client
     # npm config set unsafe-perm true
     command: >
-      bash -c "mkdir ~/.npm-global
-      && npm config set prefix '~/.npm-global'
-      && export PATH=~/.npm-global/bin:$PATH
-      && source ~/.profile
-      && npm install -g npm
+      bash -c "npm install -g npm
       && npm install
       && npm run build"
     networks:
@@ -118,11 +110,7 @@ services:
       # - .env.production:/wsapi/.env.production
       - ./.certbot/conf:/etc/letsencrypt
     command: >
-      bash -c "mkdir ~/.npm-global
-      && npm config set prefix '~/.npm-global'
-      && export PATH=~/.npm-global/bin:$PATH
-      && source ~/.profile
-      && npm install -g npm
+      bash -c "npm install -g npm
       && npm install
       && npm run start"
     networks:
