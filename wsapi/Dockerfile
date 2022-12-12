@@ -14,15 +14,18 @@ RUN useradd -u 1001 ubuntu
 WORKDIR /wsapi
 
 # COPY --chown=ubuntu:ubuntu package.json ./
-COPY package.json ./
+# COPY package.json ./wsapi
 # COPY package-lock.json ./
+
+COPY ./ ./
 
 RUN npm config set unsafe-perm true
 
-RUN npm install --force
+RUN npm install -g npm@9.2.0
+
+RUN npm install
 
 # COPY --chown=ubuntu:ubuntu ./ ./
-# COPY ./ ./
 
 # RUN useradd -u 1001 ubuntu
 
