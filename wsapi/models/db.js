@@ -49,10 +49,11 @@ global.appEnvironment = process.env.NODE_ENV;
 
 // DB connection (PostgreSQL)
 let pass = process.env.DB_PASSWORD;
+let host = process.env.DB_HOST;
 
 const sequelize = new Sequelize('bbtracker', 'postgres', pass, {
     // host: 'localhost',
-    host: 'postgres',
+    host: host, // 'postgres'
     dialect: 'postgres',
     operatorsAliases: 0,
     pool: {
