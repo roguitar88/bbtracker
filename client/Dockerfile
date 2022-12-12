@@ -8,17 +8,19 @@ FROM node:16.10.0
 # ARG uid=1001
 
 # ENV NODE_ENV=production
-RUN useradd -u 1001 ubuntu
+# RUN useradd -u 1001 ubuntu
 
 USER ubuntu
 
 # WORKDIR /var/www/client
 WORKDIR /client
 
-COPY --chown=ubuntu:ubuntu package.json ./
+# COPY --chown=ubuntu:ubuntu package.json ./
+COPY package.json ./
 # COPY package-lock.json ./
 
-COPY --chown=ubuntu:ubuntu ./ ./
+# COPY --chown=ubuntu:ubuntu ./ ./
+COPY ./ ./
 
 # RUN useradd -u 1001 ubuntu
 
