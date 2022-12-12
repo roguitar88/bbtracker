@@ -29,7 +29,7 @@ COPY ./ ./
 # USER ubuntu
 
 # RUN chown -Rf ubuntu:ubuntu /wsapi
-RUN chown -R ubuntu /node_modules
+RUN chown -R ubuntu /wsapi/node_modules
 
 # USER root
 

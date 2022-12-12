@@ -39,7 +39,7 @@ COPY ./ ./
 # USER ubuntu
 
 # RUN chown -Rf ubuntu:ubuntu /server
-RUN chown -R ubuntu /node_modules
+RUN chown -R ubuntu /server/node_modules
 
 # USER root
 

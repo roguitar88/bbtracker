@@ -29,7 +29,7 @@ COPY ./ ./
 # USER ubuntu
 
 # RUN chown -Rf ubuntu:ubuntu /client
-RUN chown -R ubuntu /node_modules
+RUN chown -R ubuntu /client/node_modules
 
 # USER root
 
