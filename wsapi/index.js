@@ -1,5 +1,5 @@
 const express = require('express');
-// const app = express();
+const app = express();
 /*
 const cors = require('cors');
 app.use(express.json());
@@ -10,14 +10,15 @@ app.use(cors({
     credentials: true
 }));
 */
-// const http = require('http');
-const http = require('https');
+global.appEnvironment = process.env.NODE_ENV;
+
+const http = appEnvironment === 'production' ? require('https'): require('http');
 // const server = http.createServer(app);
 const fs = require("fs");
-const server = http.createServer({
+const server = appEnvironment === 'production' ? http.createServer({
   key: fs.readFileSync('/etc/letsencrypt/live/websocket.bbtracker.tk/privkey.pem'),
   cert: fs.readFileSync('/etc/letsencrypt/live/websocket.bbtracker.tk/fullchain.pem')
-});
+}) : http.createServer(app);
 const { Server } = require("socket.io");
 // const io = new Server(server);
 
@@ -75,13 +76,13 @@ io.on('connection', (socket) => {
       subQuery: false
     })
     .then((msg) => {
-      console.log(msg);
+      // console.log(msg);
       if (Object.keys(msg).length == 0) {
         let ret = {error: null, info: 'No messages could be found', sender_id: data.user_id};
         // console.log(ret.info);
         io.emit('load messages', ret);
       } else {
-        console.log(msg);
+        // console.log(msg);
         msg.forEach(function(key) {
           key.info.msg_time = hp.convertDateTime(key.info.msg_time).date_time;
         });
@@ -159,5 +160,5 @@ if (appEnvironment === 'production') {
 
 server.listen(3003, () => {
   // console.log('listening on *:3003');
-  console.log('Listening on *:3003 in https mode!');
+  appEnvironment === 'production' ? console.log('Listening on *:3003 in https mode!') : console.log('listening on *:3003');
 });
