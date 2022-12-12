@@ -121,7 +121,7 @@ io.on('connection', (socket) => {
       if (prop === null) {
         // console.log('Current domain is not a property');
         // throw Error('Current domain is not a property, pal!');
-        let ret = {error: 'Current domain is not a property, pal! You need to register the domain at http://bbtracker.tk in order to send messages'};
+        let ret = {sender_id: data.user_id, room_id: data.room, error: 'Current domain is not a property, pal! You need to register the domain at http://bbtracker.tk in order to send messages'};
         io.emit('chat message', ret);
       } else {
         let curTime = hp.convertDateTime(data.datetime).n_date + ' ' + hp.convertDateTime(data.datetime).n_time;

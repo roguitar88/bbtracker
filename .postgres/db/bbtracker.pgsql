@@ -227,6 +227,10 @@ COPY public.messages (id, info) FROM stdin;
 92	{"name": "Walter", "message": "Ok, mais uma!", "room_id": "340", "msg_time": "2022-12-07 14:17:49", "sender_id": "203", "property_id": "1"}
 93	{"name": "Walter", "message": "Murilo?", "room_id": "340", "msg_time": "2022-12-07 14:18:01", "sender_id": "203", "property_id": "1"}
 94	{"name": "Murilo", "message": "Estou aqui", "room_id": "340", "msg_time": "2022-12-07 14:18:13", "sender_id": "204", "property_id": "1"}
+95	{"name": "Walter", "message": "Testando aqui bro", "room_id": "340", "msg_time": "2022-12-12 13:58:34", "sender_id": "203", "property_id": "1"}
+96	{"name": "Murilo", "message": "Tudo bem por aqui", "room_id": "340", "msg_time": "2022-12-12 13:59:34", "sender_id": "204", "property_id": "1"}
+97	{"name": "Murilo", "message": "Testando...", "room_id": "340", "msg_time": "2022-12-12 14:01:19", "sender_id": "204", "property_id": "1"}
+98	{"name": "Walter", "message": "Recebi!!", "room_id": "340", "msg_time": "2022-12-12 14:01:30", "sender_id": "203", "property_id": "1"}
 \.
 
 
@@ -236,6 +240,7 @@ COPY public.messages (id, info) FROM stdin;
 
 COPY public.properties (id, property_code, property_name, property_domain, property_owner, created_at, updated_at) FROM stdin;
 1	gp762nuuoqcoxypju8c569th9wz7q5	Academia do Laçador	academiadolacador.zuump.test	4	2022-12-03	\N
+2	4Io2go2AupJV4Ayo22kf0zTxtpUZRQ	Academia do Laçador	academiadolacador.zuump.net	4	2022-12-12	\N
 \.
 
 
@@ -255,14 +260,14 @@ COPY public.users (id, full_name, birthdate, cpf, email, password, phone, profil
 -- Name: messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.messages_id_seq', 94, true);
+SELECT pg_catalog.setval('public.messages_id_seq', 98, true);
 
 
 --
 -- Name: properties_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.properties_id_seq', 1, true);
+SELECT pg_catalog.setval('public.properties_id_seq', 2, true);
 
 
 --
