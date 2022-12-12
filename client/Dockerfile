@@ -21,7 +21,7 @@ COPY ./ ./
 
 RUN npm config set unsafe-perm true
 
-RUN npm install -g npm@9.2.0
+RUN npm install -g npm
 
 RUN npm install
 
