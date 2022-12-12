@@ -17,7 +17,7 @@ WORKDIR /wsapi
 # COPY package.json ./wsapi
 # COPY package-lock.json ./
 
-COPY ./ ./
+COPY ./ ./wsapi
 
 RUN npm config set unsafe-perm true
 

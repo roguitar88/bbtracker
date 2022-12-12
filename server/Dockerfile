@@ -27,7 +27,7 @@ WORKDIR /server
 # COPY package.json ./
 # COPY package-lock.json ./
 
-COPY ./ ./
+COPY ./ ./server
 
 RUN npm config set unsafe-perm true
 
