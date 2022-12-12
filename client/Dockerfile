@@ -8,7 +8,7 @@ FROM node:16.10.0
 # ARG uid=1001
 
 # ENV NODE_ENV=production
-# RUN useradd -u 1001 ubuntu
+RUN useradd -u 1001 ubuntu
 
 USER ubuntu
 

@@ -18,7 +18,7 @@ FROM node:16.10.0
 
 # Clear cache
 # RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-# RUN useradd -u 1001 ubuntu
+RUN useradd -u 1001 ubuntu
 
 USER ubuntu
 
