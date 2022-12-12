@@ -151,6 +151,25 @@ if (appEnvironment === 'production') {
 }
 */
 
+if (appEnvironment === 'production') {
+  const fs = require('fs');
+  const https = require('https');
+
+  const privateKey  = fs.readFileSync('/etc/letsencrypt/live/websocket.bbtracker.tk/privkey.pem');
+  const certificate = fs.readFileSync('/etc/letsencrypt/live/websocket.bbtracker.tk/fullchain.pem');
+  const credentials = {key: privateKey, cert: certificate};
+
+  https.createServer(credentials, server).listen( 3003, () => {
+    console.log('Listening on *:3003 in https mode!');
+  });
+} else {
+  server.listen(3003, () => {
+    console.log('listening on *:3003');
+  });
+}
+
+/*
 server.listen(3003, () => {
   console.log('listening on *:3003');
 });
+*/
