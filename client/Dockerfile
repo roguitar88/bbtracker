@@ -22,7 +22,7 @@ RUN npm config set unsafe-perm true
 RUN npm install --force
 
 # COPY --chown=ubuntu:ubuntu ./ ./
-COPY ./ ./
+# COPY ./ ./
 
 # RUN useradd -u 1001 ubuntu
 
