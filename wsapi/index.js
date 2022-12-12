@@ -77,7 +77,7 @@ io.on('connection', (socket) => {
     .then((msg) => {
       if (Object.keys(msg).length == 0) {
         let ret = {error: null, info: 'No messages could be found', sender_id: data.user_id};
-        // console.log(msg);
+        console.log(msg);
         // console.log(ret.info);
         io.emit('load messages', ret);
       } else {
@@ -85,7 +85,7 @@ io.on('connection', (socket) => {
           key.info.msg_time = hp.convertDateTime(key.info.msg_time).date_time;
         });
         let ret = {error: null, info: msg, sender_id: data.user_id};
-        // console.log(msg);
+        console.log(msg);
         io.emit('load messages', ret);
       }
     })
