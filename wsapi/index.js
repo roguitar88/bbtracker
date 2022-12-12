@@ -1,5 +1,5 @@
 const express = require('express');
-const app = express();
+// const app = express();
 /*
 const cors = require('cors');
 app.use(express.json());
@@ -10,23 +10,28 @@ app.use(cors({
     credentials: true
 }));
 */
+
+/*
 global.appEnvironment = process.env.NODE_ENV;
 
 const http = appEnvironment === 'production' ? require('https'): require('http');
 // const server = http.createServer(app);
 const fs = require("fs");
-/*
 const server = appEnvironment === 'production' ? http.createServer({
   key: fs.readFileSync('/etc/letsencrypt/live/websocket.bbtracker.tk/privkey.pem'),
   cert: fs.readFileSync('/etc/letsencrypt/live/websocket.bbtracker.tk/fullchain.pem')
 }) : http.createServer(app);
+const { Server } = require("socket.io");
 */
+// const io = new Server(server);
+const http = require('https');
+// const server = http.createServer(app);
+const fs = require("fs");
 const server = http.createServer({
   key: fs.readFileSync('/etc/letsencrypt/live/websocket.bbtracker.tk/privkey.pem'),
   cert: fs.readFileSync('/etc/letsencrypt/live/websocket.bbtracker.tk/fullchain.pem')
 });
 const { Server } = require("socket.io");
-// const io = new Server(server);
 
 const io = new Server(server, {
   cors: {
@@ -166,5 +171,6 @@ if (appEnvironment === 'production') {
 
 server.listen(3003, () => {
   // console.log('listening on *:3003');
-  appEnvironment === 'production' ? console.log('Listening on *:3003 in https mode!') : console.log('listening on *:3003');
+  // appEnvironment === 'production' ? console.log('Listening on *:3003 in https mode!') : console.log('listening on *:3003');
+  console.log('Listening on *:3003 in https mode!');
 });
