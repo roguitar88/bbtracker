@@ -75,17 +75,17 @@ io.on('connection', (socket) => {
       subQuery: false
     })
     .then((msg) => {
+      console.log(msg);
       if (Object.keys(msg).length == 0) {
         let ret = {error: null, info: 'No messages could be found', sender_id: data.user_id};
-        console.log(msg);
         // console.log(ret.info);
         io.emit('load messages', ret);
       } else {
+        console.log(msg);
         msg.forEach(function(key) {
           key.info.msg_time = hp.convertDateTime(key.info.msg_time).date_time;
         });
         let ret = {error: null, info: msg, sender_id: data.user_id};
-        console.log(msg);
         io.emit('load messages', ret);
       }
     })
