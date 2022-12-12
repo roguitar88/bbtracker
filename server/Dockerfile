@@ -1,7 +1,7 @@
 # FROM node:16 AS Production
 # FROM node:16
 # FROM node:16.7.0-slim
-FROM node:16.10.0
+FROM node:18.12.0
 
 # Arguments
 # ARG user=ubuntu
