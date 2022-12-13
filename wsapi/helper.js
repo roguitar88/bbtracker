@@ -36,13 +36,13 @@ let convertDateTime = (value) => {
     let minute = new Date(value).getMinutes() < 10 ? '0' + new Date(value).getMinutes() : new Date(value).getMinutes();
     let hour = new Date(value).getHours() < 10 ? '0' + new Date(value).getHours() : new Date(value).getHours();
 
-    value = year + '-' + month + '-' + day;
+    nDate = year + '-' + month + '-' + day;
 
     let nTime = hour + ':' + minute + ':' + second;
 
     let dateTime = day + '/' + month + '/' + year + ' às ' + hour + ':' + minute + 'h';
 
-    return {n_date: value, n_time: nTime, date_time: dateTime};
+    return {n_date: nDate, n_time: nTime, date_time: dateTime};
 }
 
 // let curTime = convertDateTime(nDate).n_date + ' ' + convertDateTime(nDate).n_time;

@@ -133,7 +133,8 @@ io.on('connection', (socket) => {
         }).then((msg) => {
           // console.log('New message inserted');
           // console.log(msg.dataValues.info.message);
-          console.log(data.name + ': ' + data.shout);
+          // console.log(data.name + ': ' + data.shout);
+          console.log(dateTime);
           let ret = {name: data.name, room_id: data.room, shout: data.shout, datetime: dateTime, sender_id: data.user_id, error: null}; // hp.dateTime
           io.emit('chat message', ret);
         }).catch((err) => {
