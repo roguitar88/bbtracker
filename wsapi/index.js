@@ -37,7 +37,9 @@ const io = new Server(server, {
   cors: {
     origin: [
       "http://zuump.test", "http://academiadolacador.zuump.test",
-      "http://zuump.net", "https://zuump.net", "http://academiadolacador.zuump.net", "https://academiadolacador.zuump.net"],
+      "http://zuump.net", "https://zuump.net", "http://academiadolacador.zuump.net", "https://academiadolacador.zuump.net",
+      "https://www.piesocket.com"
+    ],
     methods: ["GET", "POST"]
   }
 });
